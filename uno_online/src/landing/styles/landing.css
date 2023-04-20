@@ -1,0 +1,12 @@
+.logo {
+    margin: auto;
+    height: 10rem;
+    width: auto;
+    padding: 3rem;
+    filter: drop-shadow(0 0 2em #646cffaa);
+    text-align: center;
+  }
+.logo img{
+    height: 100%;
+}
+  
