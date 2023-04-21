@@ -9,6 +9,9 @@
 #Sam {
     background-color: #0968af;
 }
+#Lilian {
+    background-color: #02a765;
+}
 
 .profile-picture {
     width: 10rem;
@@ -30,4 +33,8 @@
     padding-left: 2rem;
     color: white;
     text-align: justify;
+}
+
+.beneath{
+    z-index: 0;
 }

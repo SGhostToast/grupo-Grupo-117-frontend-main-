@@ -17,6 +17,9 @@
 }
 
 .title-bg {
+  /* I put it at level 1, like navbar so that they display together */
+  /* Putting them at higher z-index allow them to be over the cards after */
+  z-index: 1;
   opacity: 0.4;
   position: absolute;
   left: 0;
@@ -26,6 +29,7 @@
 }
 
 .title-content {
+  z-index: 1;
   position: relative;
 }
 /*---*/
