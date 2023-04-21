@@ -61,9 +61,16 @@ h1 {
 
 h2 {
   color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-/* h1{
-  text-align: center;
-  color: yellow;
-} */
+ul{
+  text-align: left;
+  color: white;
+}
+
+p {
+  color: white;
+  text-align: justify;
+}
