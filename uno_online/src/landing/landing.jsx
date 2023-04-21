@@ -9,7 +9,7 @@ export default function Landing() {
                 <div id="logo">
                     <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/UNO_Logo.svg/640px-UNO_Logo.svg.png"} alt="uno_logo"/>
                 </div>
-                <h1>¡Bienvenidxs a UNO Online!</h1>
+                <h1>¡Bienvenidos a UNO Online!</h1>
             </div>
         </div>
         <div class="beneath">

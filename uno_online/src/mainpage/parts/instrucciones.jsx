@@ -1,7 +1,7 @@
 export default function Instrucciones() {
     return(
         <>
-        <h1>Instrucciónes</h1>
+        <h2>Instrucciónes</h2>
         <p>El usuario tiene una mano llena de cartas que puede ver. 
             Su objetivo es de eliminar todas sus cartas. 
         </p>

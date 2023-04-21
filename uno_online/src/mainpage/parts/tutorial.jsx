@@ -1,13 +1,13 @@
-import './styles/tutorial.css'
-import Cartas from "../assets/cartas.jpg";
-
-
+import '../styles/tutorial.css'
+import Cartas from "../../assets/cartas.jpg";
 
 
 export default function Tutorial() {
     return(
         <>
         <h2>Tutorial</h2>
+
+        <p>En ese tutorial haria etapas a seguir para aprender como se puede jugar al Uno !</p>
 
         <div class="ligne">
             <div class="column">

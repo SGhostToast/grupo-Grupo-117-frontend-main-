@@ -1,6 +1,6 @@
-import CartasEspeciales from "./cartas_especiales"
-import Instrucciones from "./instrucciones"
-import Tutorial from "./tutorial"
+// import CartasEspeciales from "./cartas_especiales"
+// import Instrucciones from "./instrucciones"
+// import Tutorial from "../mainpage/tutorial"
 
 export default function Rules() {
     return(
@@ -12,9 +12,9 @@ export default function Rules() {
             </div>
         </div>
         <div class="beneath">
-        <Principe />
-        <Tutorial />
-        <CartasEspeciales/>
+        {/* <Principe /> */}
+        {/* <Tutorial />
+        <CartasEspeciales/> */}
         </div>
         </>
     )

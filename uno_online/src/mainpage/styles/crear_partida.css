@@ -1,0 +1,17 @@
+#crear_partida {
+    background-color: #37a147;
+}
+
+#crear_partida:hover {
+    background-color: #46d15b;
+    border-color: white;
+}
+
+#juntar_partida {
+    background-color: #0968af;
+}
+
+#juntar_partida:hover {
+    background-color: #0c86e4;
+    border-color: white;
+}

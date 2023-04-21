@@ -1,9 +1,10 @@
 import "./styles/mainpage.css"
 
-import Instrucciones from "../mainpage/instrucciones"
-import Estadisticas from "../mainpage/estadisticas"
-import CrearPartida from "../mainpage/crear_partida"
-
+import Instrucciones from "./parts/instrucciones"
+import Estadisticas from "./parts/estadisticas"
+import CrearPartida from "./parts/crear_partida"
+import CartasEspeciales from "./parts/cartas_especiales"
+import Tutorial from "./parts/tutorial"
 
 export default function MainPage() {
     return(
@@ -18,6 +19,9 @@ export default function MainPage() {
             {/* <Instrucciones /> */}
             <CrearPartida />
             <Estadisticas />
+            <Instrucciones />
+            <Tutorial />
+            <CartasEspeciales />
         </div>
         </>
     )
