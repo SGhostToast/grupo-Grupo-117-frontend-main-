@@ -22,7 +22,7 @@ export default function InitializationGame() {
                     </ul>
                 </p>
                 <div class="comenzar_partida">
-                    <a href="/mainpage/join_game" >
+                    <a href="/mainpage/initialization_game" >
                         <boton class="comenzar_partida_boton">Comenzar partida</boton>
                     </a>
                 </div>
