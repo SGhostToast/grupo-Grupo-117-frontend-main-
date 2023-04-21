@@ -1,7 +1,9 @@
+import './styles/footer.css'
+
 export default function Footer() {
     return(
         <>
-        <p>Aquí va un footer</p>
+        <p>Desarrollado por Sam y Lilian !</p>
         </>
     )
 }

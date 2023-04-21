@@ -1,7 +1,16 @@
+import "./styles/mainpage.css"
+
+import Instrucciones from "../mainpage/instrucciones"
+import Estadisticas from "../mainpage/estadisticas"
+import CrearPartida from "../mainpage/crear_partida"
+
+
 export default function MainPage() {
     return(
         <>
-        <h1>Instrucciónes</h1>
+        <Instrucciones />
+        <CrearPartida />
+        <Estadisticas />
         </>
     )
 }
