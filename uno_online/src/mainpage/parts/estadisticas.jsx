@@ -1,8 +1,15 @@
+import '../styles/estadisticas.css'
+
 export default function Estadisticas() {
     return(
         <>
-        <h2>Estadisticas</h2>
-        <p>Aqui se agregaron pocas statisticas sobre los usuarios que jugan mas como sus partidas ganadas</p>
+        <div class="information_block">
+            <h3>Estadisticas !</h3>
+            <p>Numero de usuarios atual : 27</p>
+            <p>Numero de partidas actuales : 5</p>
+            <p>Usuario con mas victorias : <b>Nombre usuario</b></p>
+            <p>Usuario con mas partidas : <b>Nombre usuario</b></p>
+        </div>
         </>
     )
 }

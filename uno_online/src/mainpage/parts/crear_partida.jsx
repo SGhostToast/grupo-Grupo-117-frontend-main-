@@ -10,11 +10,11 @@ export default function CrearPartida() {
         <p>Existiria también un boton "Juntar partida", llegando a una pagina preguntando por un ID de partida para juntar una. 
             Quizas en esta otra pagina haria las partidas que esperan jugadores para entrar en partidas sin conocer el ID. 
         </p>
-        <a href="/mainpage">
+        <a href="/mainpage/initialization_game">
                 <button id="crear_partida">Crear partida !</button>
             </a>
-            <a href="/mainpage">
-                <button id="juntar_partida">Unirse a partida !</button>
+            <a href="/mainpage/join_game">
+                <button id="unirse_a_partida">Unirse a partida !</button>
             </a>
         </>
     )

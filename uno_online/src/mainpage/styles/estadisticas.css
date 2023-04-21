@@ -1,0 +1,17 @@
+h3{
+    color: white;
+}
+
+.information_block p{
+    color: rgba(256, 256, 256, 0.8);
+}
+
+.information_block{
+    display: block;
+    border: thick solid white;
+    border-radius: 10px;
+    background-color: black;
+    width: 70%;
+    margin: auto;
+    margin-top: 3em;
+}

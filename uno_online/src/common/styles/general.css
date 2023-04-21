@@ -44,7 +44,8 @@
 
 /*Font border: https://www.geeksforgeeks.org/css-font-border/*/
 h1 {
-  color: #fbd927;
+  /* color: #fbd927; */
+  color: yellow;
   -webkit-text-stroke-width: 0.04em;
   -webkit-text-stroke-color: black;
   text-shadow: -0.05em 0.05em 0 white,
@@ -62,7 +63,7 @@ h2 {
   color: white;
 }
 
-h1{
+/* h1{
   text-align: center;
   color: yellow;
-}
+} */
