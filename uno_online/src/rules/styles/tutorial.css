@@ -1,0 +1,22 @@
+/* .line{
+    display:block;
+    width: 50%;
+} */
+
+/* can easily make 30% / 70% columns ! */
+/* .column {
+    display: inline-block;  */
+    /* Best than float so that it can vertical align middle */
+    /* padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 1em;
+    text-align: left;
+    vertical-align: middle;
+    width: 30%;
+} */
+
+/* @media screen and (max-width: 1080px) {
+    .column{
+        width: 100%;
+    }
+} */
