@@ -1,4 +1,6 @@
 .navbar {
+    z-index: 1;
+    /* Allows the navbar to be over everything */
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -22,5 +24,5 @@
 }
 
 .navbar li a:hover:not(.active) {
-    background-color: #9d131a;
+    background-color: #bc1820;
 }

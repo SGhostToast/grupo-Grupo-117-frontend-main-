@@ -1,20 +1,33 @@
 import './styles/tutorial.css'
+import Cartas from "../assets/cartas.jpg";
+
+
+
 
 export default function Tutorial() {
     return(
         <>
-        <h1>Tutorial</h1>
-        {/* <div class='line'>
-            <div class='column'>
-                <p>oijqd oiAJQ DOIajq dpioal qzdjpo ialqzdsjxpoi LQSDJXIOP QLSDJ XOIQLS DJX OIQSLDJ XOiqslj dxoiQSL DJXOI QSLD</p>
-            </div>
-            <div class='column'>
-                <p>oijqd oiAJQ DOIajq dpioal qzdjpo ialqzdsjxpoi LQSDJXIOP QLSDJ XOIQLS DJX OIQSLDJ XOiqslj dxoiQSL DJXOI QSLD</p>
-            </div>
-        </div> */}
+        <h2>Tutorial</h2>
 
-{/* Don't understand why but does not work with two elements : bottom scrolling bar */}
+        <div class="ligne">
+            <div class="column">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>        
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="column">
+                <img class="image" src={Cartas}/>
+            </div>
+        </div>  
 
+        <div class="ligne">
+            <div class="column">
+                <img class="image" src={Cartas}/>
+            </div>
+            <div class="column">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>        
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>  
         </>
     )
 }
