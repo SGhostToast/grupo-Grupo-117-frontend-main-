@@ -14,8 +14,12 @@ export default function Landing() {
         </div>
         <div class="beneath">
             <h2>Aquí va un slogan que aún no se me ocurre</h2>
-            <button id="login">Log In</button>
-            <button id="signin">Sign In</button>
+            <a href="/">
+                <button id="login">Log In</button>
+            </a>
+            <a href="/">
+                <button id="signin">Sign In</button>
+            </a>
         </div>
         </>
     )
