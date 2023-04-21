@@ -1,0 +1,33 @@
+.team-card {
+    display: flex;
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 1rem white;
+}
+
+#Sam {
+    background-color: #0968af;
+}
+
+.profile-picture {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border-color: black;
+    border-width: .1rem;
+    border-style: solid;
+}
+
+h2 {
+    margin-top: 0;
+    -webkit-text-stroke-width: 0.05em;
+    -webkit-text-stroke-color: black;
+}
+
+.description {
+    padding-left: 2rem;
+    color: white;
+    text-align: justify;
+}

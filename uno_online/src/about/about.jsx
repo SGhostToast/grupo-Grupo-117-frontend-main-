@@ -1,3 +1,6 @@
+import './styles/about.css'
+import GhostToast from '../assets/GhostToast.jpeg';
+
 export default function About() {
     return(
         <>
@@ -8,7 +11,40 @@ export default function About() {
             </div>
         </div>
         <div class="beneath">
-
+            <div class="team-card" id="Lilian">
+                <div>
+                    <img class="profile-picture" src={GhostToast} alt="GhostToast" />
+                    <h2>Lilian</h2>
+                </div>
+                <div class="description">
+                <ul>
+                    
+                </ul>
+                <p>
+                  
+                </p>
+                </div>
+            </div>
+            <br />
+            <div class="team-card" id="Sam">
+                <div>
+                    <img class="profile-picture" src={GhostToast} alt="GhostToast" />
+                    <h2>Sam</h2>
+                </div>
+                <div class="description">
+                <ul>
+                    <li><strong>Pronombres:</strong> ellx/lx (elle/le)</li>
+                    <li><strong>Generación:</strong> 2019</li>
+                    <li><strong>Major:</strong> Robótica</li>
+                    <li><strong>Minor:</strong> Programación.</li>
+                </ul>
+                <p>
+                    Quiere dedicarse a crear videojuegos. Le gusta participar del arte en distintas
+                    formas, como en la música, el baile, las artes plásticas, etc.
+                    Se entretiene viendo animé, leyendo comics y jugando DnD. Le gusta mucho el té.
+                </p>
+                </div>
+            </div>
         </div>
         </>
     )
