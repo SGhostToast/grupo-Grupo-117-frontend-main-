@@ -8,7 +8,7 @@ import CrearPartida from "../mainpage/crear_partida"
 export default function MainPage() {
     return(
         <>
-        <Instrucciones />
+        {/* <Instrucciones /> */}
         <CrearPartida />
         <Estadisticas />
         </>

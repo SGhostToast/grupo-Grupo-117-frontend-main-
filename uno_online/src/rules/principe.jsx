@@ -1,7 +1,7 @@
 export default function Principe() {
     return(
         <>
-        <h1>Principe</h1>
+        <h2>Principe</h2>
         <p>El usuario tiene una mano llena de cartas que puede ver. 
             Su objetivo es de eliminar todas sus cartas. 
         </p>
