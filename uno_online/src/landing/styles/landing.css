@@ -10,12 +10,6 @@
   height: 100%;
 }
 
-.beneath {
-  padding: 1%;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 -5px 35px 30px black;
-}
 
 button{
   color: white;

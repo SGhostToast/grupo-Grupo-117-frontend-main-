@@ -3,9 +3,9 @@ import './styles/landing.css'
 export default function Landing() {
     return(
         <>
-        <div id="title">
-            <img id="title-bg" src="https://st2.depositphotos.com/23387462/46229/i/600/depositphotos_462298254-stock-photo-minsk-belarus-march-2021-top.jpg" alt="" />
-            <div id="title-content">
+        <div class="title">
+            <img class="title-bg" src="https://st2.depositphotos.com/23387462/46229/i/600/depositphotos_462298254-stock-photo-minsk-belarus-march-2021-top.jpg" alt="" />
+            <div class="title-content">
                 <div id="logo">
                     <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/UNO_Logo.svg/640px-UNO_Logo.svg.png"} alt="uno_logo"/>
                 </div>

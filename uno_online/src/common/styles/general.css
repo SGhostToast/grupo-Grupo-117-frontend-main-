@@ -11,12 +11,12 @@
 }
 
 /*Low opacity background image: https://www.digitalocean.com/community/tutorials/how-to-change-a-css-background-images-opacity*/
-#title {
+.title {
   overflow: hidden;
   position: relative;
 }
 
-#title-bg {
+.title-bg {
   opacity: 0.4;
   position: absolute;
   left: 0;
@@ -25,10 +25,17 @@
   height: auto;
 }
 
-#title-content {
+.title-content {
   position: relative;
 }
 /*---*/
+
+.beneath {
+  padding: 1%;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 -5px 35px 30px black;
+}
 
 /*Font border: https://www.geeksforgeeks.org/css-font-border/*/
 h1 {
