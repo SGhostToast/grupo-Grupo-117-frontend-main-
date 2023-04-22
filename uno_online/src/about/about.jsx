@@ -1,6 +1,7 @@
 import './styles/about.css'
 import GhostToast from '../assets/GhostToast.jpeg';
-import User from '../assets/user.png'
+import Lilian from '../assets/photo_lilian.jpg';
+
 
 export default function About() {
     return(
@@ -14,7 +15,7 @@ export default function About() {
         <div class="beneath">
             <div class="team-card" id="Lilian">
                 <div>
-                    <img class="profile-picture" src={User} alt="GhostToast" />
+                    <img class="profile-picture" src={Lilian} alt="Lilian" />
                     <h2>Lilian</h2>
                 </div>
                 <div class="description">

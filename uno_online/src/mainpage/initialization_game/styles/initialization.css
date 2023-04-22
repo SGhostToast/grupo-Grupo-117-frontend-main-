@@ -1,0 +1,38 @@
+.creation_game{
+    /* display: block; */
+    border: thick solid white;
+    border-radius: 30px;
+    background-color: rgb(12, 82, 186);
+    color: white;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+.creation_game .list{
+    margin-left: 10%;
+    text-align: left;
+}
+
+.comenzar_partida{
+    margin-top: 2.5em;
+    margin-bottom: 2em;
+}
+
+.comenzar_partida_boton{
+    color: white;
+    border: thick solid white;
+    background-color: red;
+    border-radius: 1em;
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+@media only screen and (min-width : 800px) {
+    .creation_game{
+        width: 560px;
+    }
+}

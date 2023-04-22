@@ -12,10 +12,10 @@ export default function CrearPartida() {
         </p>
         <a href="/mainpage/initialization_game">
                 <button id="crear_partida">Crear partida !</button>
-            </a>
-            <a href="/mainpage/join_game">
-                <button id="unirse_a_partida">Unirse a partida !</button>
-            </a>
+        </a>
+        <a href="/mainpage/join_game">
+            <button id="unirse_a_partida">Unirse a partida !</button>
+        </a>
         </>
     )
 }
