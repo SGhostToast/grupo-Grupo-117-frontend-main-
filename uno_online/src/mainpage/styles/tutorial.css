@@ -18,6 +18,13 @@
     }
 }
 
+@media screen and (min-width: 1000px) {
+  .tutorial{
+    width: 1000px;
+    margin: auto;
+  }
+}
+
 .image {
     /* width: 70%; */
     width: 300px;
