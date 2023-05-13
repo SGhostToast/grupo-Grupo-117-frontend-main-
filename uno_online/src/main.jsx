@@ -9,7 +9,7 @@ import './common/styles/general.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Header />
-    <div class="page">
+    <div className="page">
       <Routing />
     </div>
     <Footer />

@@ -2,7 +2,7 @@ import './styles/header.css'
 export default function Header() {
     return(
         <header>
-            <ul class="navbar">
+            <ul className="navbar">
                 <li><a href="/">Bienvenida</a></li>
                 <li><a href="/about">Acerca de</a></li>
                 {/* <li><a href="/rules">Reglas</a></li> */}

@@ -5,13 +5,13 @@
 export default function Rules() {
     return(
         <>
-        <div class="title">
-            <img class="title-bg" src="https://st2.depositphotos.com/23387462/46229/i/600/depositphotos_462298254-stock-photo-minsk-belarus-march-2021-top.jpg" alt="" />
-            <div class="title-content">
+        <div className="title">
+            <img className="title-bg" src="https://st2.depositphotos.com/23387462/46229/i/600/depositphotos_462298254-stock-photo-minsk-belarus-march-2021-top.jpg" alt="" />
+            <div className="title-content">
                 <h1>Reglas y prensetacion del juego !</h1>
             </div>
         </div>
-        <div class="beneath">
+        <div className="beneath">
         {/* <Principe /> */}
         {/* <Tutorial />
         <CartasEspeciales/> */}

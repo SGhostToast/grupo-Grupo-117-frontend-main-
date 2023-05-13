@@ -3,7 +3,7 @@ import '../styles/estadisticas.css'
 export default function Estadisticas() {
     return(
         <>
-        <div class="information_block">
+        <div className="information_block">
             <h3>Estadisticas !</h3>
             <p>Numero de usuarios actuales : 27</p>
             <p>Numero de partidas actuales : 5</p>

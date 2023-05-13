@@ -6,19 +6,19 @@ import Lilian from '../assets/photo_lilian.jpg';
 export default function About() {
     return(
         <>
-        <div class="title">
-            <img class="title-bg" src="https://st2.depositphotos.com/23387462/46229/i/600/depositphotos_462298254-stock-photo-minsk-belarus-march-2021-top.jpg" alt="" />
-            <div class="title-content">
+        <div className="title">
+            <img className="title-bg" src="https://st2.depositphotos.com/23387462/46229/i/600/depositphotos_462298254-stock-photo-minsk-belarus-march-2021-top.jpg" alt="" />
+            <div className="title-content">
                 <h1>Sobre el equipo</h1>
             </div>
         </div>
-        <div class="beneath">
-            <div class="team-card" id="Lilian">
+        <div className="beneath">
+            <div className="team-card" id="Lilian">
                 <div>
-                    <img class="profile-picture" src={Lilian} alt="Lilian" />
+                    <img className="profile-picture" src={Lilian} alt="Lilian" />
                     <h2>Lilian</h2>
                 </div>
-                <div class="description">
+                <div className="description">
                     <ul>
                         <li><strong>Pronombres:</strong> ilx/lx (il/le)</li>
                         <li><strong>Generación:</strong> 2019</li>
@@ -33,12 +33,12 @@ export default function About() {
                 </div>
             </div>
             <br />
-            <div class="team-card" id="Sam">
+            <div className="team-card" id="Sam">
                 <div>
-                    <img class="profile-picture" src={GhostToast} alt="GhostToast" />
+                    <img className="profile-picture" src={GhostToast} alt="GhostToast" />
                     <h2>Sam</h2>
                 </div>
-                <div class="description">
+                <div className="description">
                     <ul>
                         <li><strong>Pronombres:</strong> ellx/lx (elle/le)</li>
                         <li><strong>Generación:</strong> 2019</li>
