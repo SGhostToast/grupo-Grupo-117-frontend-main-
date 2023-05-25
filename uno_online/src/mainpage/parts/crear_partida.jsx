@@ -1,4 +1,4 @@
-import '../styles/crear_partida.css'
+import './styles/crear_partida.css'
 
 export default function CrearPartida() {
     return(

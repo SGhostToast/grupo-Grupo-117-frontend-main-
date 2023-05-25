@@ -1,4 +1,4 @@
-import '../styles/estadisticas.css'
+import './styles/estadisticas.css'
 
 export default function Estadisticas() {
     return(

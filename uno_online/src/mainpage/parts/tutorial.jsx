@@ -1,7 +1,4 @@
-import '../styles/tutorial.css'
-import Cartas from "../../assets/cartas.jpg";
-
-import "./style/tutorial.css"
+import "./styles/tutorial.css"
 
 import React, { useState } from 'react';
 import data from './tutorial.json';
