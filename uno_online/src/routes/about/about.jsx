@@ -1,6 +1,6 @@
 import './styles/about.css'
-import GhostToast from '../assets/GhostToast.jpeg';
-import Lilian from '../assets/photo_lilian.jpg';
+import GhostToast from '../../assets/GhostToast.jpeg';
+import Lilian from '../../assets/photo_lilian.jpg';
 
 
 export default function About() {
