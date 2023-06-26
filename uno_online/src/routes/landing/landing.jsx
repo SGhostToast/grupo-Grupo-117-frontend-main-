@@ -1,4 +1,22 @@
 import './styles/landing.css'
+import axios from "axios"
+import { useState } from "react"
+
+
+const toggleLogin = () => {
+    axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/login`, {
+        username: "lilianbernot",
+        password: "lilianbernot.123",
+    })
+    .then(() => {
+        console.log("Login successful !");
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}
+
+
 
 export default function Landing() {
     return(
@@ -14,8 +32,8 @@ export default function Landing() {
         </div>
         <div className="beneath">
             <h2>¡Deshazte de tus cartas antes que el resto y consigue la victoria!</h2>
-            <a href="/">
-                <button id="login">Log In</button>
+            <a >
+                <button id="login" onClick={() => toggleLogin()}>Log In</button>
             </a>
             <a href="/">
                 <button id="signin">Sign In</button>

@@ -23,7 +23,7 @@ render(app, {
 
 
 app.use(router.routes()).use(router.allowedMethods())
-router.get('/test', async ctx => ctx.body = "This is coming from a test endpoint")
+// router.get('/test', async ctx => ctx.body = "This is coming from a test endpoint")
 
 
 app.use(KoaLogger());
