@@ -20,22 +20,21 @@ const toggleJoinGame = (game_id) => {
 
 
 export default function JoinGame() {
-    // const [gamesList, setGamesList] = useState({});
+    const [gamesList, setGamesList] = useState({});
 
     // importing the list of tables from the back
-    // useEffect(() => {
-    //     axios.get(`${import.meta.env.VITE_BACKEND_URL}/tables`)
-    //     .then((response) => {
-    //         setGamesList(response.data);
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     })
-    // }, [])
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/tables`)
+        .then((response) => {
+            setGamesList(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [])
 
-    // console.log(gamesList);
+    console.log(gamesList[0]['id']);
 
-    const gamesList = [1,5,3];
 
     return(
         <>
@@ -48,9 +47,9 @@ export default function JoinGame() {
         <div className="beneath">
             {gamesList.length > 0 ? (
                 gamesList.map((code, index) => ( 
-                    <div className="partida" key={code}>
+                    <div className="partida" key={index}>
                         <h3>Partida disponible</h3>
-                        <p>Codigo partida : <span className="codigo">{gamesList[index]}</span></p>
+                        <p>Codigo partida : <span className="codigo">{gamesList[index]["id"]}</span></p>
                         <div className="unir_partida">
                             <a>
                                 <button className="unir_partida_button" onClick={() => toggleJoinGame(gamesList[index])}>Unirme a partida</button>
