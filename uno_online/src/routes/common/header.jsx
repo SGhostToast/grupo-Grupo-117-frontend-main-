@@ -7,6 +7,7 @@ export default function Header() {
                 <li><a href="/about">Acerca de</a></li>
                 {/* <li><a href="/rules">Reglas</a></li> */}
                 <li><a href="/mainpage">Jugar</a></li>
+                <li><a href="/friendspage">Amistades</a></li>
             </ul>
         </header>
     )
