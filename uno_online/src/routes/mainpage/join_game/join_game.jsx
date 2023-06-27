@@ -2,20 +2,40 @@ import "./styles/join_game.css"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
+
+const toggleJoinGame = (game_id) => {
+    // Join game from back
+    // axios.post(`${import.meta.env.VITE_BACKEND_URL}`, {
+
+    // })
+    // .then((response) => {
+    //     console.log("Join game successfully ! Playing in : " + game_id);
+    // })
+    // .catch((error) => {
+    //     console.log(error);
+    // })
+
+    console.log("Partida " + String(game_id));
+}
+
+
 export default function JoinGame() {
-    const [gamesList, setGamesList] = useState({});
+    // const [gamesList, setGamesList] = useState({});
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/tables`)
-        .then((response) => {
-            setGamesList(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }, [])
+    // importing the list of tables from the back
+    // useEffect(() => {
+    //     axios.get(`${import.meta.env.VITE_BACKEND_URL}/tables`)
+    //     .then((response) => {
+    //         setGamesList(response.data);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     })
+    // }, [])
 
-    console.log(gamesList);
+    // console.log(gamesList);
+
+    const gamesList = [1,5,3];
 
     return(
         <>
@@ -26,35 +46,21 @@ export default function JoinGame() {
             </div>
         </div>
         <div className="beneath">
-            <div className="partida">
-                <h3>Partida disponible</h3>
-                <p>Codigo partida : <span className="codigo">codigo</span></p>
-                <div className="unir_partida">
-                    <a href="/mainpage/join_game" >
-                        <button className="unir_partida_button">Unirme a partida</button>
-                    </a>
-                </div>
-            </div>
-
-            <div className="partida">
-                <h3>Partida disponible</h3>
-                <p>Codigo partida : <span className="codigo">codigo</span></p>
-                <div className="unir_partida">
-                    <a href="/mainpage/join_game" >
-                        <button className="unir_partida_button">Unirme a partida</button>
-                    </a>
-                </div>
-            </div> 
-            
-            <div className="partida">
-                <h3>Partida disponible</h3>
-                <p>Codigo partida : <span className="codigo">codigo</span></p>
-                <div className="unir_partida">
-                    <a href="/mainpage/join_game" >
-                        <button className="unir_partida_button">Unirme a partida</button>
-                    </a>
-                </div>
-            </div>
+            {gamesList.length > 0 ? (
+                gamesList.map((code, index) => ( 
+                    <div className="partida" key={code}>
+                        <h3>Partida disponible</h3>
+                        <p>Codigo partida : <span className="codigo">{gamesList[index]}</span></p>
+                        <div className="unir_partida">
+                            <a>
+                                <button className="unir_partida_button" onClick={() => toggleJoinGame(gamesList[index])}>Unirme a partida</button>
+                            </a>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <p>No games to join !</p>
+            )}
         </div>
         </>
     )

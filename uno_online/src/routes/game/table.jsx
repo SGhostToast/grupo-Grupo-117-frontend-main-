@@ -20,6 +20,7 @@ export default function Table() {
 
   return (
     <>
+      <h2>Current game id : id</h2>
       <div className="container">
         <div className="column">
           <p className="player_name">Player 1</p>
