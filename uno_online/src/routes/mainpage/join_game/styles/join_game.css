@@ -17,11 +17,7 @@
     margin-left: 1em;
 }
 
-.unir_partida{
-    margin-top: 2.3em;
-}
-
-.unir_partida_boton{
+.unir_partida_button{
     color: white;
     border: thick solid white;
     background-color: red;

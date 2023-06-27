@@ -7,6 +7,7 @@ import InitializationGame from "../mainpage/initialization_game/initialization_g
 import JoinGame from "../mainpage/join_game/join_game"
 import Test from '../test/test'
 import Login from '../landing/login'
+import Table from '../game/table'
 
 export default function Routing(){
     return (
@@ -21,6 +22,7 @@ export default function Routing(){
                 <Route path={'/join_game'} element={<JoinGame />}/>
                 <Route path={'/test'} element={<Test />}/>
                 <Route path={'/login'} element={<Login />}/>
+                <Route path={'/table'} element={<Table />}/>
             </Routes>
         </BrowserRouter>
         </>
