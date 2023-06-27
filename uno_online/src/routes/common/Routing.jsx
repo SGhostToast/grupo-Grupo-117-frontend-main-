@@ -17,8 +17,8 @@ export default function Routing(){
                 <Route path={'/about'} element={<About />}/>
                 <Route path={'/mainpage'} element={<MainPage />}/>
                 {/* <Route path={'/rules'} element={<Rules />}/> */}
-                <Route path={'/mainpage/initialization_game'} element={<InitializationGame />}/>
-                <Route path={'/mainpage/join_game'} element={<JoinGame />}/>
+                <Route path={'/initialization_game'} element={<InitializationGame />}/>
+                <Route path={'/join_game'} element={<JoinGame />}/>
                 <Route path={'/test'} element={<Test />}/>
                 <Route path={'/login'} element={<Login />}/>
             </Routes>
