@@ -6,6 +6,7 @@ import About from "../about/about"
 import InitializationGame from "../mainpage/initialization_game/initialization_game"
 import JoinGame from "../mainpage/join_game/join_game"
 import Test from '../test/test'
+import Login from '../landing/login'
 
 export default function Routing(){
     return (
@@ -19,6 +20,7 @@ export default function Routing(){
                 <Route path={'/mainpage/initialization_game'} element={<InitializationGame />}/>
                 <Route path={'/mainpage/join_game'} element={<JoinGame />}/>
                 <Route path={'/test'} element={<Test />}/>
+                <Route path={'/login'} element={<Login />}/>
             </Routes>
         </BrowserRouter>
         </>
