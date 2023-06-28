@@ -48,13 +48,15 @@ export default function Estadisticas() {
         <>
         <div className="information_block">
             <h3>Estadisticas !</h3>
-            <p>Numero de usuarios actuales : {usersList.length}</p>
-            <p>Numero de partidas actuales : {tablesList.length}</p>
-            <p>Usuarios con más victorias : 
-            {maxVictories > 0 ? 
-                    <p><b>{usernameMaxVictories}</b> with <b>{maxVictories}</b> victories !</p>
-                : <p>No victories for now !</p>}
-            </p>
+            <ul>
+                <li>Numero de usuarios actuales : {usersList.length}</li>
+                <li>Numero de partidas actuales : {tablesList.length}</li>
+                <li>Usuarios con más victorias : 
+                    {maxVictories > 0 ? 
+                            <p><b>{usernameMaxVictories}</b> with <b>{maxVictories}</b> victories !</p>
+                        : <p>No victories for now !</p>}
+                </li>
+            </ul>
         </div>
         </>
     )

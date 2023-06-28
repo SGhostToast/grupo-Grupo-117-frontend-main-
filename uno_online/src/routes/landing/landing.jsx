@@ -19,6 +19,7 @@ import './styles/landing.css'
 
 
 export default function Landing() {
+    console.log("called");
     return(
         <>
         <div className="title">

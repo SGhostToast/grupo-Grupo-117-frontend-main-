@@ -16,7 +16,7 @@ export default function InvitSent() {
             console.log(error);
         })
     }, [])
-    console.log(invitSentList);
+    // console.log(invitSentList);
 
     // const invitSentList = [{username : "invit sent 1"}, {username : "invit sent 2"}];
     // const invitSentList = [];

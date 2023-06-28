@@ -16,7 +16,7 @@ export default function InvitReceived() {
             console.log(error);
         })
     }, [])
-    console.log(invitReceivedList);
+    // console.log(invitReceivedList);
 
     // const invitReceivedList = [{username : "invit 1"}, {username : "invit 2"}];
     // const invitReceivedList = [];
