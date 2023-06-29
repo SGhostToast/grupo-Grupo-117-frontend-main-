@@ -16,7 +16,7 @@ export default function InvitSent() {
             console.log(error);
         })
     }, [])
-    // console.log(invitSentList);
+    console.log(invitSentList.pending_requests);
 
     // const invitSentList = [{username : "invit sent 1"}, {username : "invit sent 2"}];
     // const invitSentList = [];
@@ -25,9 +25,9 @@ export default function InvitSent() {
         <>
         <h2>Invitaciones que has enviado !</h2>
         <ul>
-        {invitSentList.length > 0 ? (
-            invitSentList.map((friend, index) => ( 
-                <li key={index}>{friend.username}</li>
+        {invitSentList.pending_requests && invitSentList.pending_requests.length > 0 ? (
+            invitSentList.pending_requests.map((friend, index) => ( 
+                <li key={index}>Id : {friend.befriendedid}</li>
                 ))
             ) : (
                 <p>No has enviado invitaciones en el juego !</p>
