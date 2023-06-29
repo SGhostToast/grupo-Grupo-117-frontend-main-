@@ -5,23 +5,26 @@ const cur_username = "lilianbernot";
 const cur_id = 2;
 
 
-const toggleInviteFriends = (uname) => {
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/befriend`, {
-        myusername: cur_username,
-        friendusername: uname
-    })
-    .then((response) => {
-        console.log("Join game successfully ! Playing in : " + game_id);
-    })
-    .catch((error) => {
-        console.log(error);
-    })
-
-    console.log("Inviting friend " + uname);
-}
-
 
 export default function InviteFriends() {
+    const [errorMessage, setErrorMesssage] = useState("");
+    const toggleInviteFriends = (uname) => {
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/befriend`, {
+            myusername: cur_username,
+            friendusername: uname
+        })
+        .then((response) => {
+            console.log(response.data.msg);
+            setErrorMesssage(response.data.msg);
+        })
+        .catch((error) => {
+            console.log(error.response.data.errorMessage);
+            setErrorMesssage(error.response.data.errorMessage);
+        })
+
+        console.log("Inviting friend " + uname);
+    }
+
     // console.log("Friends component rendered");
 
     const [usersList, setUsersList] = useState({});
@@ -37,25 +40,14 @@ export default function InviteFriends() {
         })
     }, [cur_username]) // loads when the cur_username is modified
 
-    const [friendsList, setFriendsList] = useState({});
-    useEffect(() => {
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/showfriends`, {
-            username: cur_username
-        })
-        .then((response) => {
-            setFriendsList(response.data);
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-        // console.log("Called");
-    }, [cur_username])
-
 
     const [uname, setUname] = useState('');
     const handleUnameChange = (event) => {
         setUname(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); // Prevent form submission and page reload    
     };
 
     return(
@@ -82,7 +74,7 @@ export default function InviteFriends() {
         </ul>
 
         <div className="form">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Username </label>
                     <input type="username" value={uname} onChange={handleUnameChange} required />
@@ -90,6 +82,7 @@ export default function InviteFriends() {
                 <button id="login" onClick={() => toggleInviteFriends(uname)}>Invitar</button>
             </form>
         </div>
+        <p>{errorMessage}</p>
         </>
     )
 }
