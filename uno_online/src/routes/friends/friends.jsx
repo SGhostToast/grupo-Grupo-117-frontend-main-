@@ -63,6 +63,10 @@ export default function Friends() {
                 <p>No tienes amigos en el juego !</p>
             )}
         </ul>
+        <a href="/invite_friends">
+                <button id="invite_friends">Invitar amigos !</button>
+        </a>
+
         {/* <ul>
         {namesList && Object.keys(namesList).length > 0 ? (
             Object.keys(namesList).map((key) => (
