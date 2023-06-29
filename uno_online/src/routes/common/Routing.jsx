@@ -10,6 +10,7 @@ import Login from '../landing/login'
 import Table from '../game/table'
 import FriendsPage from "../friends/friendspage"
 import InviteFriends from "../friends/actions/invite_friends"
+import AcceptingInvitations from "../friends/actions/accepting_invitations"
 
 export default function Routing(){
     return (
@@ -27,6 +28,7 @@ export default function Routing(){
                 <Route path={'/table'} element={<Table />}/>
                 <Route path={'/friendspage'} element={<FriendsPage />}/>
                 <Route path={'/invite_friends'} element={<InviteFriends />}/>
+                <Route path={'/accepting_invitations'} element={<AcceptingInvitations />}/>
             </Routes>
         </BrowserRouter>
         </>

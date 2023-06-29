@@ -5,11 +5,10 @@ const cur_username = "lilianbernot";
 const cur_id = 2;
 
 
-
-export default function InviteFriends() {
+export default function AcceptingInvitations() {
     // The error message is also for success
     const [errorMessage, setErrorMesssage] = useState("");
-    const toggleInviteFriends = (uname) => {
+    const toggleAcceptInvitation = (uname) => {
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/befriend`, {
             myusername: cur_username,
             friendusername: uname
@@ -26,21 +25,37 @@ export default function InviteFriends() {
         console.log("Inviting friend " + uname);
     }
 
+    const toggleRefuseInvitation = (uname) => {
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/unfriend`, {
+            myusername: cur_username,
+            otherusername: uname
+        })
+        .then((response) => {
+            console.log(response.data.msg);
+            setErrorMesssage(response.data.msg);
+        })
+        .catch((error) => {
+            console.log(error.response.data.errorMessage);
+            setErrorMesssage(error.response.data.errorMessage);
+        })
+
+        console.log("Inviting friend " + uname);
+    }
+
 // --- displaying the users which can be invited
 // miss something to delete the users you are already friend with
-    const [usersList, setUsersList] = useState({});
+    const [invitReceivedList, setInvitReceivedList] = useState({});
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/pendingfriends`, {
             username: cur_username
         })
         .then((response) => {
-            setUsersList(response.data);
+            setInvitReceivedList(response.data);
         })
         .catch((error) => {
             console.log(error);
         })
-    }, [cur_username]) // loads when the cur_username is modified
-
+    }, [])
 
     const [uname, setUname] = useState('');
     const handleUnameChange = (event) => {
@@ -56,21 +71,17 @@ export default function InviteFriends() {
         <div className="title">
             <img className="title-bg" src="https://st2.depositphotos.com/23387462/46229/i/600/depositphotos_462298254-stock-photo-minsk-belarus-march-2021-top.jpg" alt="" />
             <div className="title-content">
-                <h1>¡Puedes invitar amigos aqui!</h1>
+                <h1>¡Puedes acceptar las invitaciones que tienes aqui!</h1>
             </div>
         </div>
-        <h2>Usuarios que puedes invitar !</h2>
+        <h2>Invitaciones que has recibido !</h2>
         <ul>
-        {usersList && usersList.length >  0 ? (
-            usersList.map((user, index) => ( 
-                <li key={index}>{user.id != cur_id ? (
-                    <b>{user.username}</b>
-                    ) : (
-                    <i>{user.username}</i>
-                )}</li>
+        {invitReceivedList.pending_invites && invitReceivedList.pending_invites.length > 0 ? (
+            invitReceivedList.pending_invites.map((friend, index) => ( 
+                <li key={index}>Id : {friend.frienderid}</li>
                 ))
             ) : (
-                <p>No tienes amigos en el juego !</p>
+                <p>No tienes invitaciones en el juego !</p>
             )}
         </ul>
 
@@ -80,7 +91,8 @@ export default function InviteFriends() {
                     <label>Username </label>
                     <input type="username" value={uname} onChange={handleUnameChange} required />
                 </div>
-                <button id="login" onClick={() => toggleInviteFriends(uname)}>Invitar</button>
+                <button id="login" onClick={() => toggleAcceptInvitation(uname)}>Acceptar invitacion</button>
+                <button id="refuse" onClick={() => toggleRefuseInvitation(uname)}>Rechazar invitacion</button>
             </form>
         </div>
         <p>{errorMessage}</p>
