@@ -3,6 +3,8 @@ import axios from "axios"
 
 const cur_username = "lilianbernot";
 const cur_id = 2;
+const namesList = {};
+
 
 export default function Friends() {
     // console.log("Friends component rendered");
@@ -13,7 +15,31 @@ export default function Friends() {
             username: cur_username
         })
         .then((response) => {
+            // const friends = response.data.friends;
+            // if(friends && friends.length > 0){
+            //     // console.log(friends);
+            //     // adding the condition to the friend id
+            //     for(let i = 0; i < friends.length; i++){
+            //         const friend = friends[i];
+            //         let id = null;
+            //         if(friend.id === cur_id){
+            //             id = friend.frienderid;
+            //         } else{
+            //             id = friend.id;
+            //         }
+            //         axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`, {
+            //         })
+            //         .then((response_bis) => {
+            //             namesList[id] = response_bis.data.username;
+            //         })
+            //         .catch((error_bis) => {
+            //             console.log(error_bis);
+            //         })
+            //     }
+            // }
+
             setFriendsList(response.data);
+            // console.log(response.data);
         })
         .catch((error) => {
             console.log(error);
@@ -21,48 +47,9 @@ export default function Friends() {
         // console.log("Called");
     }, [cur_username]) // loads when the cur_username is modified
 
-    const [friendsNamesList, setFriendsNamesList] = useState({});
-    useEffect(() => {
-        // console.log(friendsList.friends && friendsList.friends.length > 0);
-        if(friendsList.friends && friendsList.friends.length > 0){
-            const namesList = {};
-            // adding the condition to the friend id
-            for(let i = 0; i < friendsList.friends.length; i++){
-                const friend = friendsList.friends[i];
-                let id = null;
-                if(friend.id === cur_id){
-                    id = friend.frienderid;
-                } else{
-                    id = friend.id;
-                }
-                axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`, {
-                })
-                .then((response) => {
-                    namesList[id] = response.data.username;
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            }
-            // console.log(namesList);
-            setFriendsNamesList(namesList);
-            console.log("Friends names : ", friendsNamesList);
-            // for (const key in friendsNamesList) {
-            //     console.log(friendsNamesList[key]);
-            // }
-        }
-    }, [friendsList]);
-
-    //   checking which id is ourself to print only the other ones
-
-    // const friendsList = [{username : "friend 1"}, {username : "friend 2"}];
-    // const friendsList = [];
-
-    console.log("Friends names normal : ", friendsNamesList);
-
     return(
         <>
-        <h2>Amistades existantes !</h2>
+        <h2>Amistades existentes !</h2>
         <ul>
         {friendsList.friends && friendsList.friends.length >  0 ? (
             friendsList.friends.map((friend, index) => ( 
@@ -77,23 +64,14 @@ export default function Friends() {
             )}
         </ul>
         {/* <ul>
-        {friendsNamesList && friendsNamesList.length >  0 ? (
-            friendsNamesList.map((friend, index) => ( 
-                <li key={index}>{friend}</li>
-                ))
-            ) : (
-                <p>No el juego !</p>
-            )}
-        </ul> */}
-        <ul>
-        {friendsNamesList && Object.keys(friendsNamesList).length > 0 ? (
-            Object.keys(friendsNamesList).map((key) => (
-            <li key={key}>{friendsNamesList[key]}</li>
+        {namesList && Object.keys(namesList).length > 0 ? (
+            Object.keys(namesList).map((key) => (
+            <li key={key}>{namesList[key]}</li>
             ))
         ) : (
             <p>No el juego!</p>
         )}
-        </ul>
+        </ul> */}
         </>
     )
 }
