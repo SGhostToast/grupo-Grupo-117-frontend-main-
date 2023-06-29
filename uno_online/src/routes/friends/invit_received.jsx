@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import "./styles/invit_received.css"
 
-const cur_username = "lilianbernot";
+const cur_username = import.meta.env.VITE_CUR_USERNAME;
 
 export default function InvitReceived() {
     const [invitReceivedList, setInvitReceivedList] = useState({});

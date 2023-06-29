@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const cur_username = "lilianbernot";
-const cur_id = 2;
-const namesList = {};
+const cur_username = import.meta.env.VITE_CUR_USERNAME;
+const cur_id = import.meta.env.VITE_CUR_ID;
 
+const namesList = {};
 
 export default function Friends() {
     // console.log("Friends component rendered");

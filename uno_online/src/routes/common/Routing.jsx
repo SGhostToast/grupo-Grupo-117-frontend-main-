@@ -9,6 +9,7 @@ import Test from '../test/test'
 import Login from '../landing/login'
 import Table from '../game/table'
 import FriendsPage from "../friends/friendspage"
+import InitGame from "../mainpage/initialization_game/init_game"
 
 export default function Routing(){
     return (
@@ -26,6 +27,8 @@ export default function Routing(){
                 <Route path={'/table'} element={<Table />}/>
 
                 <Route path={'/friendspage'} element={<FriendsPage />}/>
+
+                <Route path={'/initgame'} element={<InitGame />}/>
             </Routes>
         </BrowserRouter>
         </>

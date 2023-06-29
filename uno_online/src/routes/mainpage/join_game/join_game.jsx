@@ -33,7 +33,7 @@ export default function JoinGame() {
         })
     }, [])
 
-    console.log(gamesList[0]['id']);
+    console.log(gamesList[0]);
 
 
     return(
@@ -50,6 +50,7 @@ export default function JoinGame() {
                     <div className="partida" key={index}>
                         <h3>Partida disponible</h3>
                         <p>Codigo partida : <span className="codigo">{gamesList[index]["id"]}</span></p>
+                        <p>Creador : <span className="creador">{gamesList[index]["ownerid"]}</span></p>
                         <div className="unir_partida">
                             <a>
                                 <button className="unir_partida_button" onClick={() => toggleJoinGame(gamesList[index])}>Unirme a partida</button>
