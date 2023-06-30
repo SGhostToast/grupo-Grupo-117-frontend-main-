@@ -139,6 +139,7 @@ export default function Table(gameid) {
             <p>You have no cards !</p>
         )}
       </div>
+      
     </>
   );
 }
