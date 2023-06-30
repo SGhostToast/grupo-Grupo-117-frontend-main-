@@ -4,12 +4,13 @@ import MainPage from "../mainpage/mainpage"
 import About from "../about/about"
 // import Rules from "../rules/rules"
 import InitializationGame from "../mainpage/initialization_game/initialization_game"
-import JoinGame from "../mainpage/join_game/join_game"
 import Test from '../test/test'
 import Login from '../landing/login'
 import Table from '../game/table'
 import FriendsPage from "../friends/friendspage"
-import InitGame from "../mainpage/initialization_game/init_game"
+import CreateGame from "../mainpage/initialization_game/create_game"
+import JoinGame from "../mainpage/join_game/join_game"
+import CurrentGames from "../mainpage/join_game/current_games"
 
 export default function Routing(){
     return (
@@ -21,14 +22,16 @@ export default function Routing(){
                 <Route path={'/mainpage'} element={<MainPage />}/>
                 {/* <Route path={'/rules'} element={<Rules />}/> */}
                 <Route path={'/initialization_game'} element={<InitializationGame />}/>
-                <Route path={'/join_game'} element={<JoinGame />}/>
                 <Route path={'/test'} element={<Test />}/>
                 <Route path={'/login'} element={<Login />}/>
                 <Route path={'/table'} element={<Table />}/>
 
                 <Route path={'/friendspage'} element={<FriendsPage />}/>
 
-                <Route path={'/initgame'} element={<InitGame />}/>
+                <Route path={'/create_game'} element={<CreateGame />}/>
+                <Route path={'/join_game'} element={<JoinGame />}/>
+                <Route path={'/current_games'} element={<CurrentGames />}/>
+
             </Routes>
         </BrowserRouter>
         </>

@@ -4,7 +4,7 @@ import './styles/initialization.css'
 
 const cur_username = import.meta.env.VITE_CUR_USERNAME;
 // const cur_username = "user1";
-const gameid = 13;
+const gameid = 25;
 
 
 export default function InitGame() {
@@ -39,31 +39,26 @@ export default function InitGame() {
     const [invitations, setInvitations] = useState("");
     const [invitationsReceived, setInvitationsReceived] = useState("");
 
-    const toggleSeeInvitations = () => {
+    useEffect(() => {
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/invitations`, {
-            username: cur_username,
+            username: cur_username
         })
         .then((response) => {
-            console.log(response);
             if(response.data.invited_to_your_game){
                 setInvitations(response.data.invited_to_your_game);
             } else {
                 setInvitationsReceived(response.data.you_were_invited_to);
             }
+            // setFriendsList(response.data.friends);
+            // console.log(response.data.friends);
         })
         .catch((error) => {
-            console.log("error");
             console.log(error);
-            // setInvitations(error.response.data.errorMessage);
-        })        
-    }
+        })
+        // console.log("Called");
+    }, [cur_username]) // loads when the cur_username is modified
 
-    const toggleCloseInvitations = () => {
-        console.log("Close invitations");
-        setInvitations([]);
-        setInvitationsReceived([]);
-    }
-
+    
 // --- inviting new people to the game
     const [invit, setInvit] = useState('');
     const handleInvitChange = (event) => {
@@ -88,46 +83,46 @@ export default function InitGame() {
     }
 
 // --- Accepting / refusing invitations to game
-    const [invitador, setInvitador] = useState('');
-    const handleInvitadorChange = (event) => {
-        setInvitador(event.target.value);
-    };
-    const [invitadorMessage, setInvitadorMessage] = useState('');
-    const toggleAcceptInvitation = (invitador) => {
-        console.log("Accepting invitation ", invitador);
-        if(invitador){
-            axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/accept`, {
-                username: cur_username,
-                gameid: invitador
-            })
-            .then((response) => {
-                console.log(response.data.msg);
-                setInvitadorMessage(response.data.msg);
-            })
-            .catch((error) => {
-                console.log(error.response.data.errorMessage);
-                setInvitadorMessage(error.response.data.errorMessage);
-            })
-        }
-    }
+    // const [invitador, setInvitador] = useState('');
+    // const handleInvitadorChange = (event) => {
+    //     setInvitador(event.target.value);
+    // };
+    // const [invitadorMessage, setInvitadorMessage] = useState('');
+    // const toggleAcceptInvitation = (invitador) => {
+    //     console.log("Accepting invitation ", invitador);
+    //     if(invitador){
+    //         axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/accept`, {
+    //             username: cur_username,
+    //             gameid: invitador
+    //         })
+    //         .then((response) => {
+    //             console.log(response.data.msg);
+    //             setInvitadorMessage(response.data.msg);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.response.data.errorMessage);
+    //             setInvitadorMessage(error.response.data.errorMessage);
+    //         })
+    //     }
+    // }
 
-    const toggleRefuseInvitation = (invitador) => {
-        console.log("Refusing invitation ", invitador);
-        if(invitador){
-            axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/quit`, {
-                username: cur_username,
-                gameid: invitador
-            })
-            .then((response) => {
-                console.log(response.data.msg);
-                setInvitadorMessage(response.data.msg);
-            })
-            .catch((error) => {
-                console.log(error.response.data.errorMessage);
-                setInvitadorMessage(error.response.data.errorMessage);
-            })
-        }
-    }
+    // const toggleRefuseInvitation = (invitador) => {
+    //     console.log("Refusing invitation ", invitador);
+    //     if(invitador){
+    //         axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/quit`, {
+    //             username: cur_username,
+    //             gameid: invitador
+    //         })
+    //         .then((response) => {
+    //             console.log(response.data.msg);
+    //             setInvitadorMessage(response.data.msg);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.response.data.errorMessage);
+    //             setInvitadorMessage(error.response.data.errorMessage);
+    //         })
+    //     }
+    // }
 
 // --- starting the game
     const [iniciar_partida, setInitiarPartida] = useState('');
@@ -178,25 +173,6 @@ export default function InitGame() {
             </div>
         </div>
 
-        <div className="creation_game">
-                <h3>Iniciar una partida</h3>
-                <div className="form">
-                    <form onSubmit={handleSubmit}>
-                        <div className="input-container">
-                            <label>Numero de partida </label>
-                            <input type="username" value={game_number} onChange={handleGameNumberChange} required />
-                        </div>
-                        
-                        <button className="iniciar_partida_boton" onClick={() => toggleIniciarPartida(game_number)}>Iniciar partida</button>
-                    </form>
-                </div>
-                <p>{iniciar_partida}</p>
-            </div>
-
-        <div>
-            <button id="see_invitations" onClick={() => toggleSeeInvitations()}>See invitations</button>
-            <button id="close_invitations" onClick={() => toggleCloseInvitations()}>Close invitations</button>
-        </div>
 
         <h2>Aqui son los amigos que has invitado:</h2>
         <ul>
@@ -208,6 +184,7 @@ export default function InitGame() {
                 <p>No has invitado nadie a jugar contigo !</p>
             )}
         </ul>
+
         <div className="invite_players">
             <h3>Escribe nombre del usuario que quieres invitar !</h3>
             <div className="form">
@@ -222,8 +199,23 @@ export default function InitGame() {
             <p>{invitMessage}</p>
         </div>
 
+        <div className="creation_game">
+            <h3>Iniciar una partida</h3>
+            <div className="form">
+                <form onSubmit={handleSubmit}>
+                    <div className="input-container">
+                        <label>Numero de partida </label>
+                        <input type="username" value={game_number} onChange={handleGameNumberChange} required />
+                    </div>
+                    
+                    <button className="iniciar_partida_boton" onClick={() => toggleIniciarPartida(game_number)}>Iniciar partida</button>
+                </form>
+            </div>
+            <p>{iniciar_partida}</p>
+        </div>
 
-        <h2>Aqui son los amigos que te han invitado:</h2>
+
+        {/* <h2>Aqui son los amigos que te han invitado:</h2>
         <ul>
         {invitationsReceived && invitationsReceived.length >  0 ? (
             invitationsReceived.map((friend, index) => ( 
@@ -232,9 +224,9 @@ export default function InitGame() {
             ) : (
                 <p>No has invitado nadie a jugar contigo !</p>
             )}
-        </ul>
+        </ul> */}
 
-        <div className="accept_invitations">
+        {/* <div className="accept_invitations">
             <h3>Acceptar invitacion !</h3>
             <div className="form">
                 <form onSubmit={handleSubmit}>
@@ -247,22 +239,7 @@ export default function InitGame() {
                 </form>
             </div>
             <p>{invitadorMessage}</p>
-        </div>
+        </div> */}
         </>
     )
 }
-
-
-{/* <h4>Entra el username de las personas que quieres invitar</h4>
-                        <div className="input-container">
-                            <label>Invitado 1 : </label>
-                            <input type="username" value={invit_1} onChange={handleInvit_1Change} />
-                        </div>
-                        <div className="input-container">
-                            <label>Invitado 2 : </label>
-                            <input type="username" value={invit_2} onChange={handleInvit_2Change} />
-                        </div>
-                        <div className="input-container">
-                            <label>Invitado 3 : </label>
-                            <input type="username" value={invit_3} onChange={handleInvit_3Change}  />
-                        </div> */}
