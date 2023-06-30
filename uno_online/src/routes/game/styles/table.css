@@ -50,3 +50,7 @@ h2{
     align-items: center;
     margin-top: 50px;
 }
+
+.central_card{
+    background-color: gray;
+}
