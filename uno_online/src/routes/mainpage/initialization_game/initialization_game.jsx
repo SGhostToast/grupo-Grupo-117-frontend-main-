@@ -110,20 +110,6 @@ export default function InitializationGame() {
         </div>
         <div className="beneath">
             <div className="creation_game">
-                {/* <h3>Codigo de la partida: <span className="codigo">codigo</span></h3>
-                <p className="list">Jugadores conectados : 3/4
-                    <ul>
-                        <li>Jugador 1 (Tu)</li>
-                        <li>Jugador 2 [Listo]</li>
-                        <li>Jugador 3 [Preparandose]</li>
-                    </ul>
-                </p>
-                <div className="comenzar_partida">
-                    <a href="/mainpage/initialization_game" >
-                        <boton className="comenzar_partida_boton">Comenzar partida</boton>
-                    </a>
-                </div> */}
-
                 <h3>Escribe tu nombre de jugador la partida que quieres crear !</h3>
                 <div className="form">
                     <form onSubmit={handleSubmit}>

@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import './styles/initialization.css'
 
-// const cur_username = import.meta.env.VITE_CUR_USERNAME;
-const cur_username = "user1";
+const cur_username = import.meta.env.VITE_CUR_USERNAME;
+// const cur_username = "user1";
+const gameid = 13;
 
 
 export default function InitGame() {
@@ -129,6 +130,28 @@ export default function InitGame() {
     }
 
 // --- starting the game
+    const [iniciar_partida, setInitiarPartida] = useState('');
+    const [game_number, setGameNumber] = useState('');
+    const handleGameNumberChange = (event) => {
+        setGameNumber(event.target.value);
+    };
+    const toggleIniciarPartida = (partida) => {
+        console.log("Iniciar partida ", partida);
+        if(partida){
+            axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/begin`, {
+                username: cur_username,
+                gameid: partida
+            })
+            .then((response) => {
+                console.log(response.data.msg);
+                setInitiarPartida(response.data.msg);
+            })
+            .catch((error) => {
+                console.log(error.response.data.errorMessage);
+                setInitiarPartida(error.response.data.errorMessage);
+            })
+        }
+    }
 
     return(
         <>
@@ -155,6 +178,21 @@ export default function InitGame() {
             </div>
         </div>
 
+        <div className="creation_game">
+                <h3>Iniciar una partida</h3>
+                <div className="form">
+                    <form onSubmit={handleSubmit}>
+                        <div className="input-container">
+                            <label>Numero de partida </label>
+                            <input type="username" value={game_number} onChange={handleGameNumberChange} required />
+                        </div>
+                        
+                        <button className="iniciar_partida_boton" onClick={() => toggleIniciarPartida(game_number)}>Iniciar partida</button>
+                    </form>
+                </div>
+                <p>{iniciar_partida}</p>
+            </div>
+
         <div>
             <button id="see_invitations" onClick={() => toggleSeeInvitations()}>See invitations</button>
             <button id="close_invitations" onClick={() => toggleCloseInvitations()}>Close invitations</button>
@@ -178,7 +216,7 @@ export default function InitGame() {
                         <label>Invitado : </label>
                         <input type="username" value={invit} onChange={handleInvitChange}  />
                     </div>
-                    <button id="invite_players" onClick={() => toggleInvitePlayers(game_name, invit)}>Invita usuario</button>
+                    <button id="invite_players" onClick={() => toggleInvitePlayers(gameid, invit)}>Invita usuario</button>
                 </form>
             </div>
             <p>{invitMessage}</p>
