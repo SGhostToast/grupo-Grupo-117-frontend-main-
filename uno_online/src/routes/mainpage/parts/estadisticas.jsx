@@ -54,7 +54,7 @@ export default function Estadisticas() {
                 <li>Usuarios con más victorias : 
                     {maxVictories > 0 ? 
                             <p><b>{usernameMaxVictories}</b> with <b>{maxVictories}</b> victories !</p>
-                        : <p>No victories for now !</p>}
+                        : <p>No victoria de momento !</p>}
                 </li>
             </ul>
         </div>

@@ -7,7 +7,7 @@ const cur_username = import.meta.env.VITE_CUR_USERNAME;
 const gameid = 25;
 
 
-export default function InitGame() {
+export default function CreateGame() {
 // --- Creation of the game
     const [errorMessage, setErrorMesssage] = useState("");
     const toggleCrearPartida = (game_name) => {
