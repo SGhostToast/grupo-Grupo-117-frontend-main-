@@ -6,6 +6,7 @@ import axios from "axios"
 
 const cur_username = import.meta.env.VITE_CUR_USERNAME;
 const game_id = 13;
+const player_id = 3;
 
 export default function Table(gameid) {
   const cardsList = [{color: "red", value: 5},
@@ -23,48 +24,14 @@ export default function Table(gameid) {
   {color: "green", value: 2},
   {color: "yellow", value: 10}]
 
-  // const [game_info, setGameInfo] = useState([]);
-  // useEffect(() => {
-  //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/tables/${game_id}`)
-  //   .then((response) => {
-  //       setGameInfo(response.data);
-  //   })
-  //   .catch((error) => {
-  //       console.log(error);
-  //   })
-  // }, [])
-  // console.log(game_info);
-
-  // const [centralCard, setCentralCard] = useState([]);
-  // useEffect(() => {
-  //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/ingame/card/${game_id}`)
-  //   .then((response) => {
-  //     console.log("First response", response.data.top_card);
-  //     setCentralCard(response.data.top_card);
-  //   })
-  //   .catch((error) => {
-  //       console.log(error);
-  //   })
-
-  //   const cardid = centralCard.id;
-  //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/cards/${cardid}`)
-  //   .then((response) => {
-  //     console.log("Second response", response.data);
-  //     // setCentralCardSecond(response.data.top_card);
-  //   })
-  //   .catch((error) => {
-  //       console.log(error);
-  //   })
-  // }, [])
-  // console.log(centralCard);
-
+// --- center card
   const [centralCardInfo, setCentralCardInfo] = useState([]);
 
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/ingame/card/${game_id}`)
       .then((response) => {
-        console.log("First response", response.data.top_card);
+        // console.log("First response", response.data.top_card);
         setCentralCardInfo(response.data.top_card);
       })
       .catch((error) => {
@@ -74,12 +41,11 @@ export default function Table(gameid) {
   
   const [centralCard, setCentralCard] = useState([]);
   useEffect(() => {
-    console.log(centralCardInfo.cardid);
     if (centralCardInfo.cardid) {
       axios
         .get(`${import.meta.env.VITE_BACKEND_URL}/cards/${centralCardInfo.cardid}`)
         .then((response) => {
-          console.log("Second response", response.data);
+          // console.log("Second response", response.data);
           setCentralCard(response.data);
         })
         .catch((error) => {
@@ -87,6 +53,46 @@ export default function Table(gameid) {
         });
     }
   }, [centralCardInfo]);
+
+// --- players card
+  const [playerHand, setPlayerHand] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/ingame/hand/${player_id}`)
+      .then((response) => {
+        // console.log("Player hand", response.data.hand);
+        setPlayerHand(response.data.hand);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const [playerCards, setPlayerCards] = useState([]);
+  useEffect(() => {
+    if (playerHand.length) {
+      const fetchCards = async () => {
+        const cardList = [];
+  
+        for (let i = 0; i < playerHand.length; i++) {
+          const card_id = playerHand[i].cardid;
+          try {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/cards/${card_id}`);
+            cardList.push(response.data);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+  
+        setPlayerCards(cardList);
+      };
+  
+      fetchCards();
+    }
+  }, [playerHand]);
+
+  console.log("Player cards ", playerCards);
+  
 
   return (
     <>
@@ -114,13 +120,23 @@ export default function Table(gameid) {
             )}
       </div>
 
-      <div className="card-container">
+      {/* <div className="card-container">
         {cardsList.length > 0 ? ( 
           cardsList.map((item, index) => (
                 <Card key={index} color={item["color"]} value={item["value"]}/>
             ))
         ) : (
             <p>You have won !</p>
+        )}
+      </div> */}
+
+      <div className="card-container">
+        {playerCards.length > 0  ? ( 
+          playerCards.map((item, index) => (
+                <Card key={index} color={item.color.toLowerCase()} value={item["symbol"]}/>
+            ))
+        ) : (
+            <p>You have no cards !</p>
         )}
       </div>
     </>
