@@ -1,6 +1,7 @@
 import Friends from './friends'
 import InvitReceived from './invit_received'
 import InvitSent from './invit_sent'
+import InvitarRechazar from './invitar_rechazar'
 
 export default function FriendsPage() {
     return(
@@ -15,6 +16,7 @@ export default function FriendsPage() {
             <Friends />
             <InvitReceived />
             <InvitSent />
+            <InvitarRechazar />
         </div>
         </>
     )

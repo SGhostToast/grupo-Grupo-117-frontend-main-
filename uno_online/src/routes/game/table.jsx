@@ -166,6 +166,20 @@ export default function Table(gameid) {
       });
   };
 
+// --- turn of 
+  const [turn, setTurn] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/ingame/turn/${game_id}`)
+      .then((response) => {
+        setTurn(response.data.turn);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [playerCards, otherPlayerCards]);
+
   return (
     <>
       <h2>Current game id : {game_id}</h2>
@@ -181,6 +195,8 @@ export default function Table(gameid) {
             <p></p>
           )}
       </div>
+
+      <div><h2>Turno de : {turn}</h2></div>
 
       <div className='bin-container'>
               <h2>Maso comun</h2>
