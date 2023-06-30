@@ -51,6 +51,11 @@ h2{
     margin-top: 50px;
 }
 
+/* Buttons */
 .central_card{
     background-color: gray;
+}
+
+.normal_card{
+    all:unset;
 }

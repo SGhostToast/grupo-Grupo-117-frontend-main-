@@ -36,6 +36,7 @@
 }
 
 .multi{
-    background-color: gray;
+    /* background-color: gray; */
+    background: radial-gradient(circle, red, yellow, green, blue);
     color: white;
 }
