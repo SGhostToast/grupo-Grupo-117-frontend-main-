@@ -1,0 +1,61 @@
+.number_page p{
+    text-align: center;
+}
+
+/* Tutorial container */
+
+.container{
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    grid-gap: 1rem;
+    /* max-width: 1440px; */
+    margin: 0 auto;
+    margin-top: 2em;
+}
+
+.tile:nth-child(1), .tile:nth-child(2), .tile:nth-child(3){
+    grid-column: span 1;
+    align-self: center; /* allows vertically aligning the buttons */
+}
+
+button{
+    background-color: red;
+    color: white;
+}
+
+/* Instruction container */
+
+.instruction_container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 1rem;
+    margin-top: 2em;
+}
+.instruction_container .tile:nth-child(1), .tile:nth-child(2){
+    grid-column: span 1;
+}
+
+
+/* Image container */
+
+.image_container{
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+    grid-gap: 1rem;
+    margin-top: 2em;
+    margin-left: 1em;
+}
+.image_container .tile:nth-child(1), .tile:nth-child(2), .tile:nth-child(3){
+    grid-column: span 1;
+    align-self: center;
+}
+
+.image_container button{
+    background-color: green;
+    color: white;
+    border: none;
+}
+
+.image_container img{
+    width: 100%;
+}

@@ -1,0 +1,183 @@
+{
+    "content": [
+      {
+        "id": 1,
+        "title": "Reglas generales",
+        "html": "<p>Asi empieza el turno de un jugador : cartas en la mesa, cartas en su mano y cartas en la reserva. Imaginamos que la carta en la mesa es un 7 rojo. El usuario puede jugar en 3 casos : <ul>   <li>Tiene una carta con la color roja</li> <li>Tiene una carta con el numero 7. Si el usuario tiene mas de una carta de valor 7, puede jugar todas</li> <li>Tiene una carta especial que le permite jugar</li> </ul> </p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "imagePath": "/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "imagePath":"/src/assets/GhostToast.jpeg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "imagePath":"/src/assets/photo_lilian.jpg"
+            }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Reglas generales",
+        "html": "<p><p>Si no somos en uno de esos casos, el jugador debe tomar una carta de la reserva.</p><p>Ahora, puede ver de nuevo si puede jugar. Si puede, el punto precedente se aplica. Si no, el jugador siguiente juega.</p></p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "text": "just a little text to try",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "text": "just a little text to try",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "text": "just a little text to try",
+                "imagePath":"/src/assets/cartas.jpg"
+            }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Reglas generales",
+        "html": "<p><p>Si el jugador tiene una unica carta, el debe anunciar \"Uno\" antes de que los otros dicen \"Contro-Uno\".</p><p>En caso de \"Uno\", no pasa nada y continuamos al turno del jugador siguiente.</p><p>En caso de \"Contro-Uno\", el jugador toma 1 carta reserva y el jugador siguiente empieza su turno.</p></p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "imagePath":"/src/assets/cartas.jpg"
+            }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Ahora, vemos cartas especiales",
+        "html": "<p><b>No pasa:</b> cuando un jugador pone esta carta, el siguiente no puede jugar. Esas pueden ser multiples y los efectos se anaden: si pongo 2 cartas \"pasa\", los dos jugadores que me siguen no pueden jugar.</p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "imagePath":"/src/assets/cartas.jpg"
+            }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Ahora, vemos cartas especiales",
+        "html":"<p><b>Al réves:</b> cuando se juega esta carta, la manera de cambiar de turnos es hecha al réves. Imaginamos que el jugador que juega después de yo es el de mi izquierda, si una perso na juega esa carta, el jugador que me sigue sera el e mi derecha.</p><p>Los efectos de multiplés de esa carta de anaden: si pongo 2, no cambia nada. 3 cambia.</p></p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "imagePath":"/src/assets/cartas.jpg"
+            }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Ahora, vemos cartas especiales",
+        "html":"<p><p><b>+2:</b> cuando se juega esa carta, el jugador siguiente debe tomar 2 cartas y pasar su turno. Solo puede jugar si tiene una carta con mismo simbolo. </p><p>Los efectos se anaden: si pongo dos cartas asi, el jugador siguiente debe tomer 4 cartas.</p></p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "imagePath":"/src/assets/cartas.jpg"
+            }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Ahora, vemos cartas especiales",
+        "html":"<p><p><b>Multicolor:</b> esa carta se puede jugar cuando el jugador lo quiere. Se puede poner sobre cualquier carta. Permite al jugador de cambiar el color del juego por el jugador siguiente. </p> <p>Imaginamos que hay un 7 rojo en la mesa.  Yo juego una carta multicolor y eligio \"amarillo\". Ahora, el jugador que me sigue debe jugar una carta amarilla. No tiene restriccion de valor de carta.</p></p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "imagePath":"/src/assets/cartas.jpg"
+            }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Ahora, vemos cartas especiales",
+        "html":"<p><p><b>+4 multicolor:</b> el efecto de esa carta es entre la \"+2\" y la \"Multicolor\". Cuando se juega, el jugador elige una nueva color por el jugador siguiente que debe tomar 4 cartas y pasar su turno.</p> <p>Una restriccion especial: esa carta se puede jugar solo si el jugador no tiene otra opcion.</p></p>",
+        "images":[
+            {
+                "id":1,
+                "title": "Image 1",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":2,
+                "title": "Image 2",
+                "imagePath":"/src/assets/cartas.jpg"
+            },
+            {
+                "id":3,
+                "title": "Image 3",
+                "imagePath":"/src/assets/cartas.jpg"
+            }
+        ]
+      }
+    ]
+}
