@@ -16,7 +16,7 @@ const Card = ({ color, value }) => {
     "reverse":"🔄",
     "drawTwo": "+2",
     "wildDraw4": "+4",
-    "wild":"🔴🟡🟢🔵"
+    "wild":""
   }
     return (
       <div className={`card ${color}`}>

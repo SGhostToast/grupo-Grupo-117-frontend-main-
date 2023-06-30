@@ -178,16 +178,18 @@ export default function Table(gameid) {
               <p className="number_cards">{item.hand.length}</p>
             </div>
             ))) : (
-            <Card color="gray" value="bin"/>
+            <p></p>
           )}
       </div>
 
       <div className='bin-container'>
               <h2>Maso comun</h2>
         {centralCard.color ? (
-          <button className='central_card' onClick={() => toggleTakeCentralCard(player_id)}>
-            <Card color={centralCard.color.toLowerCase()} value={centralCard.symbol}/>
-          </button>
+          <div className="bin_card">
+            <button className='card_button' onClick={() => toggleTakeCentralCard(player_id)}>
+              <Card color={centralCard.color.toLowerCase()} value={centralCard.symbol}/>
+            </button>
+          </div>
             ) : (
               <Card color="gray" value="bin"/>
             )}
@@ -198,15 +200,14 @@ export default function Table(gameid) {
       <div className="card-container">
         {playerCards.length > 0  ? ( 
           playerCards.map((item, index) => (
-            <button key={index} className='normal_card' onClick={() => togglePlayCard(player_id, index)}>
+            <button key={index} className='card_button' onClick={() => togglePlayCard(player_id, index)}>
                 <Card color={item.color.toLowerCase()} value={item["symbol"]}/>
             </button>
             ))
         ) : (
             <p>You have no cards !</p>
         )}
-      </div>
-      
+      </div>      
     </>
   );
 }

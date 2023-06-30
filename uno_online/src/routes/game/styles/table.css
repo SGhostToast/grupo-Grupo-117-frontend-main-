@@ -37,9 +37,10 @@ h2{
 .number_cards{
     font-size: 3em;
     text-align: center;
-    color: yellow;
+    color: rgb(255, 0, 0);
     margin-top: -10px;
     margin-bottom: 20px;
+    font-weight: bold;
 
 }
 
@@ -51,11 +52,24 @@ h2{
     margin-top: 50px;
 }
 
-/* Buttons */
-.central_card{
+.bin_card{
     background-color: gray;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid rgb(255, 255, 255);
+    border-radius: 8px;
 }
 
-.normal_card{
+/* Buttons */
+.card_button{
     all:unset;
+    cursor: pointer;
+}
+
+.card_button:hover{
+    cursor: hand;
+    transform: scale(1.1);
 }
