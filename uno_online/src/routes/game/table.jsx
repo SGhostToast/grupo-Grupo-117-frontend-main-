@@ -17,6 +17,8 @@ const player_id = 127;
 // const player_id = 128;
 
 export default function Table() {
+// allows reloading each time we click on a button
+  const [trigger, setTrigger] = useState(false);
 
 // --- center card
   const [centralCardInfo, setCentralCardInfo] = useState([]);
@@ -27,11 +29,13 @@ export default function Table() {
       .then((response) => {
         // console.log("First response", response.data.top_card);
         setCentralCardInfo(response.data.top_card);
+        setTrigger(false);
+
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [trigger]);
   
   const [centralCard, setCentralCard] = useState([]);
   useEffect(() => {
@@ -61,7 +65,7 @@ export default function Table() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [trigger]);
 
   const [playerCards, setPlayerCards] = useState([]);
   useEffect(() => {
@@ -138,6 +142,7 @@ export default function Table() {
       .then((response) => {
         console.log(response.data);
         setErrorMessage(`Has tomado la carta (${response.data.description.symbol}, ${response.data.description.color}) del maso comun!`);
+        setTrigger(true);
       })
       .catch((error) => {
         // console.log(error.response.data.errorMessage);
@@ -156,6 +161,7 @@ export default function Table() {
         tableid:game_id
       })
       .then((response) => {
+        setTrigger(true);
         // console.log(response.data);
       })
       .catch((error) => {
@@ -163,6 +169,7 @@ export default function Table() {
         setErrorMessage(error.response.data.errorMessage);
       });
   };
+
 
 // --- turn of 
   const [turn, setTurn] = useState("");
