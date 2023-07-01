@@ -2,12 +2,32 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import './styles/initialization.css'
 
-const cur_username = import.meta.env.VITE_CUR_USERNAME;
-// const cur_username = "user1";
-const gameid = 25;
+// const cur_username = import.meta.env.VITE_CUR_USERNAME;
+// const cur_user_id = 2;
 
+const cur_username = "user1";
+const cur_user_id = 5;
+
+// const cur_username = "user2";
+// const cur_user_id = 6;
 
 export default function CreateGame() {
+// --- current game id
+    const [gameid, setGameid] = useState(-1);
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/table/${cur_user_id}`)
+        .then((response) => {
+            if(response.data[0]){
+                setGameid(response.data[0].gameid);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        // console.log("Called");
+    }, [cur_username])
+    // console.log(gameid);
+
 // --- Creation of the game
     const [errorMessage, setErrorMesssage] = useState("");
     const toggleCrearPartida = (game_name) => {
@@ -82,47 +102,6 @@ export default function CreateGame() {
         }
     }
 
-// --- Accepting / refusing invitations to game
-    // const [invitador, setInvitador] = useState('');
-    // const handleInvitadorChange = (event) => {
-    //     setInvitador(event.target.value);
-    // };
-    // const [invitadorMessage, setInvitadorMessage] = useState('');
-    // const toggleAcceptInvitation = (invitador) => {
-    //     console.log("Accepting invitation ", invitador);
-    //     if(invitador){
-    //         axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/accept`, {
-    //             username: cur_username,
-    //             gameid: invitador
-    //         })
-    //         .then((response) => {
-    //             console.log(response.data.msg);
-    //             setInvitadorMessage(response.data.msg);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.response.data.errorMessage);
-    //             setInvitadorMessage(error.response.data.errorMessage);
-    //         })
-    //     }
-    // }
-
-    // const toggleRefuseInvitation = (invitador) => {
-    //     console.log("Refusing invitation ", invitador);
-    //     if(invitador){
-    //         axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/quit`, {
-    //             username: cur_username,
-    //             gameid: invitador
-    //         })
-    //         .then((response) => {
-    //             console.log(response.data.msg);
-    //             setInvitadorMessage(response.data.msg);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.response.data.errorMessage);
-    //             setInvitadorMessage(error.response.data.errorMessage);
-    //         })
-    //     }
-    // }
 
 // --- starting the game
     const [iniciar_partida, setInitiarPartida] = useState('');
@@ -156,7 +135,16 @@ export default function CreateGame() {
                 <h1>Inicialisacion partida !</h1>
             </div>
         </div>
-        <div className="beneath">
+
+        <div className="beneath">{gameid > 0 ? (
+            <div className="creation_game">
+                <h3>Ya haces parte de la partida {gameid}!</h3>
+                
+                {/* <a href="/table">
+                    <button>Ir a la partida actual</button>
+                </a> */}
+            </div>
+        ) : (
             <div className="creation_game">
                 <h3>Escribe tu nombre de jugador la partida que quieres crear !</h3>
                 <div className="form">
@@ -170,9 +158,15 @@ export default function CreateGame() {
                     </form>
                 </div>
                 <p>{errorMessage}</p>
+                <div>{errorMessage ? (
+                    <a href="/table">
+                        <button>Ir a la partida actual</button>
+                    </a>
+                ) : (
+                    <p> {errorMessage} </p>
+                )}</div>
             </div>
-        </div>
-
+        )}</div>
 
         <h2>Aqui son los amigos que has invitado:</h2>
         <ul>
@@ -200,15 +194,10 @@ export default function CreateGame() {
         </div>
 
         <div className="creation_game">
-            <h3>Iniciar una partida</h3>
+            <h3>Iniciar partida</h3>
             <div className="form">
                 <form onSubmit={handleSubmit}>
-                    <div className="input-container">
-                        <label>Numero de partida </label>
-                        <input type="username" value={game_number} onChange={handleGameNumberChange} required />
-                    </div>
-                    
-                    <button className="iniciar_partida_boton" onClick={() => toggleIniciarPartida(game_number)}>Iniciar partida</button>
+                    <button className="iniciar_partida_boton" onClick={() => toggleIniciarPartida(gameid)}>Iniciar partida</button>
                 </form>
             </div>
             <p>{iniciar_partida}</p>

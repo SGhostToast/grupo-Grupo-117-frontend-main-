@@ -18,34 +18,30 @@ export default function CurrentGames() {
         })
     }, [])
 
-    console.log(gamesList);
+    // console.log(gamesList);
 
-    // const [friendsNameList, setFriendsNameList] = useState({});
-    // useEffect(() => {
-    //     if (gamesList.length) {
-    //     const fetchFriends = async () => {
-    //         const friendsNames = [];
+    const [friendsNameList, setFriendsNameList] = useState({});
+    useEffect(() => {
+        if (gamesList.length) {
+        const fetchFriends = async () => {
+            const friendsNames = [];
 
-    //         for (let i = 0; i < gamesList.length; i++) {
-    //             let friend_id = - 1;
-    //             if(gamesList[i].frienderid == cur_id){
-    //                 friend_id = gamesList[i].befriendedid;
-    //             } else{
-    //                 friend_id = gamesList[i].frienderid;
-    //             }
-    //             try {
-    //                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/${friend_id}`);
-    //                 friendsNames.push(response.data.username);
-    //             } catch (error) {
-    //                 console.log(error);
-    //             }
-    //         }
-    //         setFriendsNameList(friendsNames);
-    //     };
+            for (let i = 0; i < gamesList.length; i++) {
+                let friend_id = gamesList[i].ownerid;
+                try {
+                    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/${friend_id}`);
+                    friendsNames.push(response.data.username);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            setFriendsNameList(friendsNames);
+            console.log(friendsNames);
+        };
     
-    //     fetchFriends();
-    //     }
-    // }, [gamesList]);
+        fetchFriends();
+        }
+    }, [gamesList]);
 
 
     return(
@@ -57,16 +53,16 @@ export default function CurrentGames() {
             </div>
         </div>
         <div className="beneath">
-            {gamesList.length > 0 ? (
-                gamesList.map((code, index) => ( 
+            {friendsNameList.length > 0 ? (
+                friendsNameList.map((creador, index) => ( 
                     <div className="partida" key={index}>
                         <h3>Partida existante</h3>
                         <p>Codigo partida : <span className="codigo">{gamesList[index]["id"]}</span></p>
-                        <p>Creador : <span className="creador">{gamesList[index]["ownerid"]}</span></p>
+                        <p>Creador : <span className="creador">{creador}</span></p>
                     </div>
                 ))
             ) : (
-                <p>No games to join !</p>
+                <p>No existen partidas !</p>
             )}
         </div>
         </>

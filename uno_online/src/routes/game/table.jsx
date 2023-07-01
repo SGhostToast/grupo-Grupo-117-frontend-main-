@@ -5,24 +5,10 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 const cur_username = import.meta.env.VITE_CUR_USERNAME;
-const game_id = 13;
-const player_id = 3;
+const game_id = 27;
+// const player_id = 3;
 
-export default function Table(gameid) {
-  const cardsList = [{color: "red", value: 5},
-  {color: "blue", value: 8},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "green", value: 2},
-  {color: "yellow", value: 10}]
+export default function Table() {
 
 // --- center card
   const [centralCardInfo, setCentralCardInfo] = useState([]);

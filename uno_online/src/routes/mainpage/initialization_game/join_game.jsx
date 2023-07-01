@@ -2,10 +2,15 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import './styles/join_game.css'
 
-const cur_username = import.meta.env.VITE_CUR_USERNAME;
+// const cur_username = import.meta.env.VITE_CUR_USERNAME;
 // const cur_username = "user1";
-// const gameid = 25;
+// const cur_user_id = 5;
 
+const cur_username = "user2";
+const cur_user_id = 6;
+
+// const cur_username = "ghosttoast";
+// const cur_user_id = 1;
 
 export default function JoinGame() {
 // --- shared components 
@@ -15,34 +20,48 @@ export default function JoinGame() {
 
 // --- already in game ?
     const [ingame, setIngame] = useState("");
-
     useEffect(() => {
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/accept`, {
-            username: cur_username,
-            gameid: -1 // to be sure it does not exist
-        })
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/players/meingame/${cur_user_id}`)
         .then((response) => {
-            console.log(response.data.msg);
+            // console.log(response.data);
             setIngame(response.data.msg);
         })
         .catch((error) => {
-            console.log(error.response.data.errorMessage);
-            setIngame(error.response.data.errorMessage);
+            // console.log(error.response.data.errorMessage);
+            setIngame("");
         })
-        // console.log("Called");
     }, [cur_username]) // loads when the cur_username is modified
 
+    const [waitingGame, setWaitingGame] = useState("");
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/players/mewaitinggame/${cur_user_id}`)
+        .then((response) => {
+            console.log(response.data);
+            setWaitingGame(response.data);
+        })
+        .catch((error) => {
+            console.log(error.response.data.errorMessage);
+            setWaitingGame("");
+        })
+    }, [cur_username]) // loads when the cur_username is modified
 
 
 // --- invitations already sent
     const [invitationsReceived, setInvitationsReceived] = useState("");
+    const [invitationsSent, setInvitationsSent] = useState("");
 
     useEffect(() => {
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/players/invitations`, {
             username: cur_username
         })
         .then((response) => {
-            setInvitationsReceived(response.data.you_were_invited_to);
+            // console.log(response.data);
+            if(response.data.msg_you_invited){
+                setInvitationsSent(response.data.invited_to_your_game);
+            } 
+            if (response.data.msg_you_were_invited){
+                setInvitationsReceived(response.data.you_were_invited_to);
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -109,34 +128,59 @@ export default function JoinGame() {
                     <button>Ir a la partida !</button>
                 </a>
             </div>
-        ) : (
+        ) : ( 
             <div>
-                <h2>Aqui son los amigos que te han invitado:</h2>
-                <ul>
-                {invitationsReceived && invitationsReceived.length >  0 ? (
-                    invitationsReceived.map((friend, index) => ( 
-                        <li key={index}>Game: {friend.gameid}, status : {friend.status}</li>
-                        ))
-                    ) : (
-                        <p>Nadie te ha invitado!</p>
-                    )}
-                </ul>
+            {waitingGame ? (
+                <div>
+                    <h2>Ya estas esperando el juego {waitingGame.player.gameid}</h2>
 
-                <div className="accept_invitations">
-                    <h3>Acceptar invitacion !</h3>
-                    <div className="form">
-                        <form onSubmit={handleSubmit}>
-                            <div className="input-container">
-                                <label>Id de partida que te ha invitado : </label>
-                                <input type="username" value={invitador} onChange={handleInvitadorChange}  />
-                            </div>
-                            <button id="accept_invitation" onClick={() => toggleAcceptInvitation(invitador)}>Acceptar invitacion</button>
-                            <button id="refuse_invitation" onClick={() => toggleRefuseInvitation(invitador)}>Rechazar invitacion</button>
-                        </form>
-                    </div>
-                    <p>{invitadorMessage}</p>
+                    <a href="/table">
+                        <button>Ir a la partida !</button>
+                    </a>
                 </div>
+            ) : ( 
+                <p>No esperas ningun juego !</p>
+            )}
+            <h2>Aqui son los amigos que te han invitado:</h2>
+            <ul>
+            {invitationsReceived && invitationsReceived ? (
+                invitationsReceived.map((friend, index) => ( 
+                    <li key={index}>Game: {friend.gameid}, status : {friend.status}</li>
+                    ))
+                ) : (
+                    <p>Nadie te ha invitado!</p>
+                )}
+            </ul>
+
+            <div className="accept_invitations">
+                <h3>Acceptar invitacion !</h3>
+                <div className="form">
+                    <form onSubmit={handleSubmit}>
+                        <div className="input-container">
+                            <label>Id de partida que te ha invitado : </label>
+                            <input type="username" value={invitador} onChange={handleInvitadorChange}  />
+                        </div>
+                        <button id="accept_invitation" onClick={() => toggleAcceptInvitation(invitador)}>Acceptar invitacion</button>
+                        <button id="refuse_invitation" onClick={() => toggleRefuseInvitation(invitador)}>Rechazar invitacion</button>
+                    </form>
+                </div>
+                <p>{invitadorMessage}</p>
             </div>
+
+            <h2>Aqui son los amigos que has invitado a tu partida !</h2>
+            <ul>
+            {invitationsSent && invitationsSent ? (
+                invitationsSent.map((invit, index) => ( 
+                    <li key={index}>Game: {invit.gameid}, user : {invit.name}, status : {invit.status}</li>
+                    ))
+                ) : (
+                    <p>Nadie te ha invitado!</p>
+                )}
+            </ul>
+            <a href="/create_game">
+                <button>Va a crear tu partida !</button>
+            </a>
+        </div>
         )}
 
         </>
