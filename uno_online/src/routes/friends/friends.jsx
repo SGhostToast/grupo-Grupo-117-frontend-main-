@@ -7,7 +7,6 @@ const cur_id = import.meta.env.VITE_CUR_ID;
 const namesList = {};
 
 export default function Friends() {
-    // console.log("Friends component rendered");
 
 // --- current friends
     const [friendsList, setFriendsList] = useState({});

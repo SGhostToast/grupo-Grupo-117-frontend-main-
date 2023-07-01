@@ -3,11 +3,13 @@ import axios from "axios"
 import './styles/join_game.css'
 
 // const cur_username = import.meta.env.VITE_CUR_USERNAME;
-// const cur_username = "user1";
-// const cur_user_id = 5;
+// const cur_user_id = 2;
 
-const cur_username = "user2";
-const cur_user_id = 6;
+const cur_username = "user1";
+const cur_user_id = 5;
+
+// const cur_username = "user2";
+// const cur_user_id = 6;
 
 // const cur_username = "ghosttoast";
 // const cur_user_id = 1;

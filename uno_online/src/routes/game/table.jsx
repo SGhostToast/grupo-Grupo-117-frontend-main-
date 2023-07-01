@@ -4,9 +4,16 @@ import './styles/table.css'
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-const cur_username = import.meta.env.VITE_CUR_USERNAME;
-const game_id = 27;
-// const player_id = 3;
+// const cur_username = import.meta.env.VITE_CUR_USERNAME;
+// const game_id = 27;
+// const player_id = 110;
+
+// data of user1
+// const game_id = 28;
+// const player_id = 112;
+
+const game_id = 30;
+const player_id = 117;
 
 export default function Table() {
 

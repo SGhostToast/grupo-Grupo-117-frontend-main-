@@ -2,23 +2,24 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import './styles/initialization.css'
 
-// const cur_username = import.meta.env.VITE_CUR_USERNAME;
-// const cur_user_id = 2;
+const cur_username = import.meta.env.VITE_CUR_USERNAME;
+const cur_user_id = 2;
 
-const cur_username = "user1";
-const cur_user_id = 5;
+// const cur_username = "user1";
+// const cur_user_id = 5;
 
 // const cur_username = "user2";
 // const cur_user_id = 6;
 
 export default function CreateGame() {
 // --- current game id
-    const [gameid, setGameid] = useState(-1);
+    const [waiting_gameid, setWaitingGameid] = useState(-1);
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/table/${cur_user_id}`)
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/players/mewaitinggame/${cur_user_id}`)
         .then((response) => {
-            if(response.data[0]){
-                setGameid(response.data[0].gameid);
+            // console.log(response.data.player);
+            if(response.data.player){
+                setWaitingGameid(response.data.player.gameid);
             }
         })
         .catch((error) => {
@@ -26,10 +27,26 @@ export default function CreateGame() {
         })
         // console.log("Called");
     }, [cur_username])
-    // console.log(gameid);
+
+    const [playing_gameid, setPlayingGameid] = useState(-1);
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/players/meingame/${cur_user_id}`)
+        .then((response) => {
+            if(response.data){
+                setPlayingGameid(response.data.player.gameid);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [cur_username])
 
 // --- Creation of the game
-    const [errorMessage, setErrorMesssage] = useState("");
+    const [game_name, setGameName] = useState('');
+    const handleGameNameChange = (event) => {
+        setGameName(event.target.value);
+    };
+    const [errorCreatePartidaMessage, setErrorMesssage] = useState("");
     const toggleCrearPartida = (game_name) => {
         console.log("Creating game");
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/tables/create`, {
@@ -46,10 +63,6 @@ export default function CreateGame() {
         })        
     }
 
-    const [game_name, setGameName] = useState('');
-    const handleGameNameChange = (event) => {
-        setGameName(event.target.value);
-    };
 
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent form submission and page reload    
@@ -69,14 +82,40 @@ export default function CreateGame() {
             } else {
                 setInvitationsReceived(response.data.you_were_invited_to);
             }
-            // setFriendsList(response.data.friends);
-            // console.log(response.data.friends);
         })
         .catch((error) => {
             console.log(error);
         })
         // console.log("Called");
     }, [cur_username]) // loads when the cur_username is modified
+
+    const [waiting_players, setWaitingPlayers] = useState("");
+    useEffect(() => {
+        const fetchWaitingPlayers = async () => {
+            const players_ready = [];
+
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/tables/${waiting_gameid}/players`)
+            .then((response) => {
+                // console.log("Response", response.data);
+                for(let i = 0; i<response.data.length; i++){
+                    if(response.data[i].status == "READY" && response.data[i].userid != cur_user_id){
+                        // console.log("One ready");
+                        players_ready.push(response.data[i]);
+                    }
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+            setWaitingPlayers(players_ready);
+            // console.log("Players ready ", players_ready);
+        };
+    
+        fetchWaitingPlayers();
+
+    }, [waiting_gameid]);
+
 
     
 // --- inviting new people to the game
@@ -136,99 +175,93 @@ export default function CreateGame() {
             </div>
         </div>
 
-        <div className="beneath">{gameid > 0 ? (
+        <div className="beneath">{playing_gameid  > -1 ? (
             <div className="creation_game">
-                <h3>Ya haces parte de la partida {gameid}!</h3>
+                <h3>Ya estas jugando en la partida {playing_gameid}!</h3>
                 
-                {/* <a href="/table">
+                <a href="/table">
                     <button>Ir a la partida actual</button>
-                </a> */}
+                </a>
             </div>
-        ) : (
-            <div className="creation_game">
-                <h3>Escribe tu nombre de jugador la partida que quieres crear !</h3>
-                <div className="form">
-                    <form onSubmit={handleSubmit}>
-                        <div className="input-container">
-                            <label>Tu nombre de jugador </label>
-                            <input type="username" value={game_name} onChange={handleGameNameChange} required />
+        ) : ( 
+            <div>
+                { waiting_gameid > -1 ? (
+                    <div className="creation_game">
+                        <h3>Ya haces parte de la partida {waiting_gameid}, esperando su inicio!</h3>
+                    </div>
+                ) : (   
+                    <div> 
+                        <h3>No haces parte de ningun partida. Crea tu propria partida o verifica si alguin te ha invitado!</h3>
+                        <a href="/join_game">
+                            <button>Juntar partida ?</button>
+                        </a>
+
+                        <div className="creation_game">
+                            <div className="form">
+                                <form onSubmit={handleSubmit}>
+                                    <div className="input-container">
+                                        <label>Entra tu nombre de jugador por la partida que vas a crear ! </label>
+                                        <input type="username" value={game_name} onChange={handleGameNameChange}  />
+                                    </div>
+                                    <button id="create_game" onClick={() => toggleCrearPartida(cur_username, game_name)}>Crear partida</button>
+                                </form>
+                                <p>{errorCreatePartidaMessage}</p>
+                            </div>
                         </div>
-                        
-                        <button className="comenzar_partida_boton" onClick={() => toggleCrearPartida(game_name)}>Crear partida</button>
-                    </form>
+                    </div>
+                )
+                }
+
+                <div>
+                    <h2>Aqui son los amigos que has invitado:</h2>
+                    <ul>
+                    {invitations && invitations.length >  0 ? (
+                        invitations.map((friend, index) => ( 
+                            <li key={index}>Game: {friend.gameid}, friend : {friend.name}, status : {friend.status}</li>
+                            ))
+                        ) : (
+                            <p>No has invitado nadie a jugar contigo !</p>
+                        )}
+                    </ul>
+
+                    <ul>
+                    {waiting_players && waiting_players.length >  0 ? (
+                        waiting_players.map((friend, index) => ( 
+                            <li key={index}>Game: {friend.gameid}, friend : {friend.name}, status : {friend.status}</li>
+                            ))
+                        ) : (
+                            <p>Nadie esta listo !</p>
+                        )}
+                    </ul>
+
+                    <div className="invite_players">
+                        <h3>Escribe nombre del usuario que quieres invitar !</h3>
+                        <div className="form">
+                            <form onSubmit={handleSubmit}>
+                                <div className="input-container">
+                                    <label>Invitado : </label>
+                                    <input type="username" value={invit} onChange={handleInvitChange}  />
+                                </div>
+                                <button id="invite_players" onClick={() => toggleInvitePlayers(waiting_gameid, invit)}>Invita usuario</button>
+                            </form>
+                        </div>
+                        <p>{invitMessage}</p>
+                    </div>
+
+                    <div className="creation_game">
+                        <h3>Iniciar partida</h3>
+                        <div className="form">
+                            <form onSubmit={handleSubmit}>
+                                <button className="iniciar_partida_boton" onClick={() => toggleIniciarPartida(waiting_gameid)}>Iniciar partida</button>
+                            </form>
+                        </div>
+                        <p>{iniciar_partida}</p>
+                    </div>
                 </div>
-                <p>{errorMessage}</p>
-                <div>{errorMessage ? (
-                    <a href="/table">
-                        <button>Ir a la partida actual</button>
-                    </a>
-                ) : (
-                    <p> {errorMessage} </p>
-                )}</div>
             </div>
-        )}</div>
 
-        <h2>Aqui son los amigos que has invitado:</h2>
-        <ul>
-        {invitations && invitations.length >  0 ? (
-            invitations.map((friend, index) => ( 
-                <li key={index}>Game: {friend.gameid}, friend : {friend.name}, status : {friend.status}</li>
-                ))
-            ) : (
-                <p>No has invitado nadie a jugar contigo !</p>
-            )}
-        </ul>
-
-        <div className="invite_players">
-            <h3>Escribe nombre del usuario que quieres invitar !</h3>
-            <div className="form">
-                <form onSubmit={handleSubmit}>
-                    <div className="input-container">
-                        <label>Invitado : </label>
-                        <input type="username" value={invit} onChange={handleInvitChange}  />
-                    </div>
-                    <button id="invite_players" onClick={() => toggleInvitePlayers(gameid, invit)}>Invita usuario</button>
-                </form>
-            </div>
-            <p>{invitMessage}</p>
+        )}
         </div>
-
-        <div className="creation_game">
-            <h3>Iniciar partida</h3>
-            <div className="form">
-                <form onSubmit={handleSubmit}>
-                    <button className="iniciar_partida_boton" onClick={() => toggleIniciarPartida(gameid)}>Iniciar partida</button>
-                </form>
-            </div>
-            <p>{iniciar_partida}</p>
-        </div>
-
-
-        {/* <h2>Aqui son los amigos que te han invitado:</h2>
-        <ul>
-        {invitationsReceived && invitationsReceived.length >  0 ? (
-            invitationsReceived.map((friend, index) => ( 
-                <li key={index}>Game: {friend.gameid}, status : {friend.status}</li>
-                ))
-            ) : (
-                <p>No has invitado nadie a jugar contigo !</p>
-            )}
-        </ul> */}
-
-        {/* <div className="accept_invitations">
-            <h3>Acceptar invitacion !</h3>
-            <div className="form">
-                <form onSubmit={handleSubmit}>
-                    <div className="input-container">
-                        <label>Id de partida que te ha invitado : </label>
-                        <input type="username" value={invitador} onChange={handleInvitadorChange}  />
-                    </div>
-                    <button id="accept_invitation" onClick={() => toggleAcceptInvitation(invitador)}>Acceptar invitacion</button>
-                    <button id="refuse_invitation" onClick={() => toggleRefuseInvitation(invitador)}>Rechazar invitacion</button>
-                </form>
-            </div>
-            <p>{invitadorMessage}</p>
-        </div> */}
         </>
     )
 }
