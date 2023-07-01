@@ -35,6 +35,11 @@
     color: black;
 }
 
+.black{
+    background-color: black;
+    color: white;
+}
+
 .multi{
     /* background-color: gray; */
     background: radial-gradient(circle, red, yellow, green, blue);

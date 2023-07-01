@@ -12,8 +12,9 @@ import axios from "axios"
 // const game_id = 28;
 // const player_id = 112;
 
-const game_id = 34;
-const player_id = 125;
+const game_id = 35;
+const player_id = 127;
+// const player_id = 128;
 
 export default function Table() {
 
@@ -55,6 +56,7 @@ export default function Table() {
       .then((response) => {
         // console.log("Player hand", response.data.hand);
         setPlayerHand(response.data.hand);
+        // console.log(playerHand);
       })
       .catch((error) => {
         console.log(error);
@@ -134,10 +136,11 @@ export default function Table() {
         playerid:playerid,
       })
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
+        setErrorMessage(`Has tomado la carta (${response.data.description.symbol}, ${response.data.description.color}) del maso comun!`);
       })
       .catch((error) => {
-        console.log(error.response.data.errorMessage);
+        // console.log(error.response.data.errorMessage);
         setErrorMessage(error.response.data.errorMessage);
       });
   };
@@ -145,10 +148,12 @@ export default function Table() {
 // --- play card
   const togglePlayCard = (playerid, index) => {
     // console.log(index, playerCards[index]);
+    console.log(playerCards[index].id);
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/ingame/play`, {
         playerid:playerid,
-        cardorder: index,
+        cardid: playerCards[index].id,
+        tableid:game_id
       })
       .then((response) => {
         // console.log(response.data);
@@ -170,7 +175,7 @@ export default function Table() {
         setTurn(response.data.turn.name);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Error in /ingame/turn", error);
       });
   }, [playerCards, otherPlayerCards]);
 
@@ -197,8 +202,9 @@ export default function Table() {
         {centralCard.color ? (
           <div className="bin_card">
             <button className='card_button' onClick={() => toggleTakeCentralCard(player_id)}>
-              <Card color={centralCard.color.toLowerCase()} value={centralCard.symbol}/>
+              <Card color="black" value="bin"/>
             </button>
+            <Card color={centralCard.color.toLowerCase()} value={centralCard.symbol}/>
           </div>
             ) : (
               <Card color="gray" value="bin"/>
@@ -212,6 +218,7 @@ export default function Table() {
           playerCards.map((item, index) => (
             <button key={index} className='card_button' onClick={() => togglePlayCard(player_id, index)}>
                 <Card color={item.color.toLowerCase()} value={item["symbol"]}/>
+                {/* <p>{item.cardid}</p> */}
             </button>
             ))
         ) : (
