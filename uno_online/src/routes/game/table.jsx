@@ -12,8 +12,8 @@ import axios from "axios"
 // const game_id = 28;
 // const player_id = 112;
 
-const game_id = 30;
-const player_id = 117;
+const game_id = 34;
+const player_id = 125;
 
 export default function Table() {
 
@@ -91,7 +91,7 @@ export default function Table() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/tables/${game_id}/players`)
       .then((response) => {
-        // console.log("Player hand", response.data.hand);
+        // console.log("Other player", response.data);
         // We do not want it to store the current player array
         const myArray = response.data.filter(item => item.id !== player_id);
         // console.log("My array", myArray);
@@ -134,7 +134,7 @@ export default function Table() {
         playerid:playerid,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error.response.data.errorMessage);
@@ -151,7 +151,7 @@ export default function Table() {
         cardorder: index,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error.response.data.errorMessage);
@@ -166,7 +166,8 @@ export default function Table() {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/ingame/turn/${game_id}`)
       .then((response) => {
-        setTurn(response.data.turn);
+        // console.log(response);
+        setTurn(response.data.turn.name);
       })
       .catch((error) => {
         console.log(error);
@@ -175,13 +176,13 @@ export default function Table() {
 
   return (
     <>
-      <h2>Current game id : {game_id}</h2>
+      <h2>Id del juego actual : {game_id}</h2>
 
       <div className='container'>
         {otherPlayerCards.length ? (
           otherPlayerCards.map((item, index) => (
             <div className="column" key={index}>
-              <p className="player_name">Player {otherPlayers[index].id}</p>
+              <p className="player_name">{otherPlayers[index].name}</p>
               <p className="number_cards">{item.hand.length}</p>
             </div>
             ))) : (
