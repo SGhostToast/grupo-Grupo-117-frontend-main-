@@ -45,13 +45,17 @@ export default function CrearPartida() {
         <p>Existiria también un boton "Juntar partida", llegando a una pagina preguntando por un ID de partida para juntar una. 
             Quizas en esta otra pagina haria las partidas que esperan jugadores para entrar en partidas sin conocer el ID. 
         </p>
-        <a href="/initgame">
-                <button id="crear_partida">Crear / juntar partida !</button>
+        <a href="/create_game">
+                <button id="crear_partida">Crear partida !</button>
         </a>
-        <a href="/join_game">
+        <a href="/current_games">
             <button id="unirse_a_partida">Ver partida existantes !</button>
         </a>
-        <div className="creation_game">
+        <a href="/join_game">
+            <button id="join_game">Juntar partida !</button>
+        </a>
+
+        {/* <div className="creation_game">
             <div className="form">
                 <form onSubmit={handleSubmit}>
                     <div className="input-container">
@@ -63,12 +67,10 @@ export default function CrearPartida() {
                     </a>
                 </form>
             </div>
-            {/* <p>{errorMessage}</p> */}
         </div>
         <a href="/table">
-            {/* <button className="ir_a_partida" onClick={() => toggleIrAPartida(gameid)}>Ir a partida</button> */}
             <button className="ir_a_partida">Ir a partida</button>
-        </a>
+        </a> */}
         </>
     )
 }
