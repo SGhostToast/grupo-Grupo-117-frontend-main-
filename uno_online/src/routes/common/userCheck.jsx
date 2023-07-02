@@ -5,7 +5,7 @@ import { AuthContext } from '../../auth/AuthContext';
 const UserCheck = (method, rel_route) => { 
   const { token } = useContext(AuthContext)
   const [status, setStatus] = useState(null);
-  let authorized = false;
+  const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
     console.log(token);
@@ -17,9 +17,9 @@ const UserCheck = (method, rel_route) => {
       }
     })
       .then(response => {
-        console.log(response.data.user)
-        setStatus(response.data.message)
-        authorized = true;
+        console.log(response)
+        setStatus(response)
+        setAuthorized(response.data.isLoggedIn);
       })
       .catch(error => {
         setStatus(error.message);

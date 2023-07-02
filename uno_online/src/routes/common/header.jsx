@@ -9,6 +9,7 @@ export default function Header() {
     }
 
     const authorized = UserCheck('get', '/auth/check-login');
+    console.log(authorized);
 
     return(
         <header>
@@ -22,22 +23,22 @@ export default function Header() {
 
             
             {authorized ? (
-                <React.Fragment>
+                <div>
                 <img src={profilePic} className='userpic' onClick={toggleMenu} />
 
-                <div className="user-menu-wrap" id='userMenu'>
-                    <div className="user-menu">
-                    <div className="user-info">
-                        <img src={profilePic} className='userpic' id='dropdown' />
-                        <h3>Name Placeholder</h3>
-                    </div>
-                    <ul className='user-dropdown'>
-                        <li><a href="/">Mi Perfil</a></li>
-                        <li><a href="/about">Salir</a></li>
-                    </ul>
+                    <div className="user-menu-wrap" id='userMenu'>
+                        <div className="user-menu">
+                        <div className="user-info">
+                            <img src={profilePic} className='userpic' id='dropdown' />
+                            <h3>Name Placeholder</h3>
+                        </div>
+                        <ul className='user-dropdown'>
+                            <li><a href="/">Mi Perfil</a></li>
+                            <li><a href="/about">Salir</a></li>
+                        </ul>
+                        </div>
                     </div>
                 </div>
-                </React.Fragment>
             ) : null}
 
         </header>
