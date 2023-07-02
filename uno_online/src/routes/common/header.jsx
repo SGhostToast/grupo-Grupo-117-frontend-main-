@@ -1,5 +1,15 @@
 import './styles/header.css'
+import profilePic from '../../assets/user.png';
+import UserCheck from './userCheck';
+
 export default function Header() {
+    let userMenu = document.getElementById('userMenu');
+    function toggleMenu(){
+        userMenu.classList.toggle("open-menu");
+    }
+
+    const authorized = UserCheck('get', '/auth/check-login');
+
     return(
         <header>
             <ul className="navbar">
@@ -9,6 +19,27 @@ export default function Header() {
                 <li><a href="/mainpage">Jugar</a></li>
                 <li><a href="/friendspage">Amistades</a></li>
             </ul>
+
+            
+            {authorized ? (
+                <React.Fragment>
+                <img src={profilePic} className='userpic' onClick={toggleMenu} />
+
+                <div className="user-menu-wrap" id='userMenu'>
+                    <div className="user-menu">
+                    <div className="user-info">
+                        <img src={profilePic} className='userpic' id='dropdown' />
+                        <h3>Name Placeholder</h3>
+                    </div>
+                    <ul className='user-dropdown'>
+                        <li><a href="/">Mi Perfil</a></li>
+                        <li><a href="/about">Salir</a></li>
+                    </ul>
+                    </div>
+                </div>
+                </React.Fragment>
+            ) : null}
+
         </header>
     )
 }

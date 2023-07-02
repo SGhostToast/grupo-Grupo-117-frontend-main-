@@ -3,7 +3,8 @@ import Landing from "../landing/landing"
 import MainPage from "../mainpage/mainpage"
 import About from "../about/about"
 import Test from '../test/test'
-import Login from '../landing/login'
+import Login from '../profile/login'
+import Signup from '../profile/signup'
 import Table from '../game/table'
 import FriendsPage from "../friends/friendspage"
 
@@ -21,6 +22,7 @@ export default function Routing(){
                 <Route path={'/mainpage'} element={<MainPage />}/>
                 <Route path={'/test'} element={<Test />}/>
                 <Route path={'/login'} element={<Login />}/>
+                <Route path={'/signup'} element={<Signup />}/>
                 <Route path={'/table'} element={<Table />}/>
 
                 <Route path={'/friendspage'} element={<FriendsPage />}/>

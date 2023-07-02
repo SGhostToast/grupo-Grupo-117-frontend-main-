@@ -5,10 +5,20 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    top: 0;
+}
+
+header{
+    z-index: 1;
+    margin: 0;
+    padding: 0;
     background-color:#ed1b24;
     top: 0;
     position: fixed;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar li {
@@ -25,4 +35,66 @@
 
 .navbar li a:hover:not(.active) {
     background-color: #bc1820;
+}
+
+.userpic {
+    margin-right: 10px;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#dropdown {
+    width: 4rem;
+    height: 4rem;
+}
+
+/* https://www.youtube.com/watch?v=ybXulmeilFM */
+.user-menu-wrap {
+    position: absolute;
+    top: 100%;
+    right: 1%;
+    width: 15rem;
+    margin: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.user-menu-wrap.open-menu {
+    max-height: 20rem;
+}
+
+.user-menu {
+    background-color: #bc1820;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.user-dropdown {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    top: 0;
+}
+
+.user-dropdown li a {
+    display: block;
+    color:white;
+    text-align: center;
+    padding: .4rem;
+    text-decoration: none;
+}
+
+.user-dropdown li a:hover:not(.active) {
+    background-color: #8d0f15;
 }
