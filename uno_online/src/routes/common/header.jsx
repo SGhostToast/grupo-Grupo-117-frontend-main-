@@ -1,6 +1,9 @@
 import './styles/header.css'
 import profilePic from '../../assets/user.png';
 import UserCheck from './userCheck';
+import axios from 'axios';
+import React, {useState, useContext} from 'react';
+import { AuthContext } from '../../auth/AuthContext';
 
 export default function Header() {
     let userMenu = document.getElementById('userMenu');
@@ -9,7 +12,25 @@ export default function Header() {
     }
 
     const authorized = UserCheck('get', '/auth/check-login');
-    console.log(authorized);
+    const [username, setUsername] = useState(null);
+    if (authorized) {
+        const { token } = useContext(AuthContext);
+        axios({
+            method: 'get',
+            url: `${import.meta.env.VITE_BACKEND_URL}/users/accesseduser`,
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          })
+            .then(response => {
+              console.log(response);
+              setUsername(response.data.username);
+              console.log(username);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+    }
 
     return(
         <header>
@@ -30,7 +51,7 @@ export default function Header() {
                         <div className="user-menu">
                         <div className="user-info">
                             <img src={profilePic} className='userpic' id='dropdown' />
-                            <h3>Name Placeholder</h3>
+                            <h3>{username}</h3>
                         </div>
                         <ul className='user-dropdown'>
                             <li><a href="/">Mi Perfil</a></li>
