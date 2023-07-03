@@ -2,13 +2,26 @@
   "name": "uno_online",
   "private": true,
   "version": "0.0.0",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "nodemon src/app.js"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.22.3",
+    "@babel/register": "^7.21.0",
+    "axios": "^1.4.0",
+    "koa": "^2.14.2",
+    "koa-body": "^6.0.1",
+    "koa-ejs": "^4.3.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^12.0.0",
+    "koa-static": "^5.0.0",
+    "mime": "^3.0.0",
+    "nodemon": "^2.0.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0"
